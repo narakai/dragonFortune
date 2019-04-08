@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activity.MainActivity"
+    tools:showIn="@layout/app_bar_main"
+    android:background="#ffffff"
+    android:orientation="vertical"
+
+    >
+    <FrameLayout
+        android:orientation="vertical"
+        android:id="@+id/containerMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="#fff"
+
+            >
+
+
+            <ScrollView
+
+                android:id="@+id/scrollView1"
+
+                android:layout_width="match_parent"
+
+                android:layout_height="match_parent"
+                android:background="#FFFFFF">
+
+
+                <FrameLayout
+                    android:id="@+id/topContainerMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        tools:context=".activity.MainActivity"
+
+                        >
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+
+                            >
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="25dp"
+                                >
+
+                                <TextView
+                                    android:id="@+id/txtUserName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="17dp"
+                                    android:fontFamily="@font/notosanslight"
+                                    android:includeFontPadding="false"
+                                    android:text="현명규"
+                                    android:textColor="#000000"
+                                    android:textSize="24dp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/notosanslight"
+                                    android:includeFontPadding="false"
+                                    android:text="님의"
+
+                                    android:textColor="#000000"
+                                    android:textSize="24dp" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="17dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/notosanslight"
+                                android:includeFontPadding="false"
+                                android:text="오늘 운세를\n확인해보세요."
+                                android:textColor="#000000"
+                                android:textSize="24dp" />
+                        </LinearLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="25dp"
+                            >
+
+
+                            <Button
+                                android:id="@+id/sun"
+                                android:layout_width="63dp"
+                                android:layout_height="63dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="70dp"
+                                android:layout_centerVertical="true"
+                                android:layout_centerHorizontal="true"
+
+
+                               android:background="@drawable/weather_01" />
+
+
+
+                            <com.github.lzyzsd.circleprogress.DonutProgress
+                                android:id="@+id/progressBar"
+                                android:layout_width="160dp"
+                                android:layout_height="160dp"
+                                android:layout_weight="1"
+                                app:donut_text_size="0dp"
+                                app:donut_finished_color="#14A2F6"
+                                app:donut_unfinished_color="#F7F7F7"
+                                app:donut_unfinished_stroke_width="15dp"
+                                app:donut_finished_stroke_width="15dp"
+                                android:rotation="270"
+                                />
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/score"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/notosansregu"
+                                android:includeFontPadding="false"
+                                android:text="0"
+                                android:layout_marginTop="-20dp"
+                                android:textColor="#000000"
+                                android:textSize="75dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/notom"
+                                android:includeFontPadding="false"
+                                android:layout_marginTop="-20dp"
+                                android:text="점"
+                                android:textColor="#14A2F6"
+                                android:textSize="19dp" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txtTodayOutline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="17dp"
+                            android:fontFamily="@font/notosanslight"
+                            android:includeFontPadding="false"
+                            android:text="오늘도 좋은일이 있을거 같아요.\n행복한 하루 되세요."
+                            android:textColor="#000000"
+                            android:textSize="17dp" />
+
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardUseCompatPadding="true"
+                            app:cardElevation="5dp"
+                            app:cardCornerRadius="3dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginTop="7dp"
+                            android:layout_marginRight="7dp"
+                            android:layout_marginBottom="7dp"
+
+                            >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="#f7f7f7"
+                                android:orientation="vertical"
+
+                                >
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+
+
+                                    >
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="#fff"
+                                        android:orientation="vertical"
+                                        android:layout_weight="1"
+                                        android:layout_marginRight="1dp"
+                                        android:layout_marginBottom="1dp"
+                                        >
+                                        <LinearLayout
+                                            android:id="@+id/item_today_fortune"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical"
+
+                                            android:clickable="true"
+                                            android:background="?android:attr/selectableItemBackground"
+
+                                            >
+
+                                            <RelativeLayout
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="20dp">
+                                                <TextView
+                                                    android:id="@+id/imgMonth"
+                                                    android:layout_width="wrap_content"
+                                                    android:layout_height="wrap_content"
+                                                    android:text="5"
+                                                    android:layout_centerHorizontal="true"
+                                                    android:layout_centerVertical="true"
+                                                    android:layout_marginTop="20dp"
+                                                    />
+                                                <ImageView
+                                                    android:layout_width="40dp"
+                                                    android:layout_height="40dp"
+                                                    android:layout_gravity="center"
+
+                                                    android:src="@drawable/menu_01"
+
+
+                                                    />
+
+                                            </RelativeLayout>
+
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:layout_gravity="center"
+                                                android:layout_marginTop="15dp"
+                                                android:layout_marginBottom="11dp"
+                                                android:fontFamily="@font/notom"
+                                                android:includeFontPadding="false"
+                                                android:text="오늘의 운세"
+                                                android:textColor="#676767"
+                                                android:textSize="15dp" />
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+
+
+                                    <LinearLayout
+                                        android:id="@+id/item_year_fortune"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="1dp"
+                                        android:layout_weight="1"
+
+                                        android:layout_marginBottom="1dp"
+                                        android:orientation="vertical"
+                                        android:clickable="true"
+                                        android:background="@android:color/white"
+                                        android:foreground="?attr/selectableItemBackground"
+
+                                        >
+
+                                        <RelativeLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="20dp">
+                                            <TextView
+
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text=""
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:layout_marginTop="20dp"
+                                                />
+                                            <ImageView
+                                                android:layout_width="40dp"
+                                                android:layout_height="40dp"
+                                                android:layout_gravity="center"
+
+                                                android:src="@drawable/menu_02"
+
+
+                                                />
+
+                                        </RelativeLayout>
+
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="15dp"
+                                            android:layout_marginBottom="11dp"
+                                            android:fontFamily="@font/notom"
+                                            android:includeFontPadding="false"
+                                            android:text="신년운세"
+                                            android:textColor="#676767"
+                                            android:textSize="15dp" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/item_tojung_fortune"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="1dp"
+                                        android:layout_weight="1"
+                                        android:background="@android:color/white"
+                                        android:foreground="?attr/selectableItemBackground"
+                                        android:layout_marginBottom="1dp"
+                                        android:orientation="vertical">
+
+                                        <RelativeLayout
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="20dp">
+                                            <TextView
+
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:text=""
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:layout_marginTop="20dp"
+                                                />
+                                            <ImageView
+                                                android:layout_width="40dp"
+                                                android:layout_height="40dp"
+                                                android:layout_gravity="center"
+
+                                                android:src="@drawable/menu_03"
+
+
+                                                />
+
+                                        </RelativeLayout>
+
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="15dp"
+                                            android:layout_marginBottom="11dp"
+                                            android:fontFamily="@font/notom"
+                                            android:includeFontPadding="false"
+                                            android:text="토정비결"
+                                            android:textColor="#676767"
+                                            android:textSize="15dp" />
+                                    </LinearLayout>
+
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+
+                                    >
+
+                                    <LinearLayout
+
+                                        android:id="@+id/item_gold_fortune"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="1dp"
+                                        android:layout_weight="1"
+                                        android:background="@android:color/white"
+                                        android:foreground="?attr/selectableItemBackground"
+                                        android:orientation="vertical">
+
+                                        <ImageView
+                                            android:layout_width="40dp"
+                                            android:layout_height="40dp"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="29dp"
+                                            android:src="@drawable/menu_04"
+
+
+                                            />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="15dp"
+                                            android:layout_marginBottom="11dp"
+                                            android:fontFamily="@font/notom"
+                                            android:includeFontPadding="false"
+                                            android:text="재물운"
+                                            android:textColor="#676767"
+                                            android:textSize="15dp" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/item_love_fortune"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginRight="1dp"
+                                        android:layout_weight="1"
+                                        android:background="@android:color/white"
+                                        android:foreground="?attr/selectableItemBackground"
+                                        android:orientation="vertical">
+
+                                        <ImageView
+                                            android:layout_width="40dp"
+                                            android:layout_height="40dp"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="29dp"
+                                            android:src="@drawable/menu_05"
+
+
+                                            />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="15dp"
+                                            android:layout_marginBottom="11dp"
+                                            android:fontFamily="@font/notom"
+                                            android:includeFontPadding="false"
+                                            android:text="궁 합"
+                                            android:textColor="#676767"
+                                            android:textSize="15dp" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/item_today_tail_fortune"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@android:color/white"
+                                        android:foreground="?attr/selectableItemBackground"
+                                        android:orientation="vertical">
+
+                                        <ImageView
+                                            android:layout_width="40dp"
+                                            android:layout_height="40dp"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="29dp"
+                                            android:src="@drawable/menu_06"
+
+
+                                            />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_marginTop="15dp"
+                                            android:layout_marginBottom="11dp"
+                                            android:fontFamily="@font/notom"
+                                            android:includeFontPadding="false"
+                                            android:text="오늘의 띠별 운세"
+                                            android:textColor="#676767"
+                                            android:textSize="15dp" />
+                                    </LinearLayout>
+
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+
+
+
+
+                        </android.support.v7.widget.CardView>
+
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+            </ScrollView>
+
+
+        </FrameLayout>
+    </FrameLayout>
+
+</LinearLayout>

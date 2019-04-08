@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+    android:background="#F7F7F7"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/bluecircle"
+            android:layout_width="11dp"
+            android:layout_height="11dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/circle"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="8dp"
+            ></LinearLayout>
+        <TextView
+            android:id="@+id/txtUser"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="현명규"
+            android:layout_marginRight="5dp"
+            android:textColor="#000"
+            android:fontFamily="@font/notosanslight"
+            android:includeFontPadding="false"
+            />
+        <TextView
+            android:id="@+id/txtBirth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1983.10.22"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/notosanslight"
+            android:includeFontPadding="false"
+            android:textColor="#000"
+            />
+        <TextView
+            android:id="@+id/txtSolar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(양력)"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/notosanslight"
+            android:includeFontPadding="false"
+            android:textColor="#000"
+            />
+
+        <TextView
+            android:id="@+id/txtModifyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="수정"
+            android:fontFamily="@font/notom"
+            android:includeFontPadding="false"
+            android:textSize="14dp"
+            android:textColor="#fff"
+            android:background="@drawable/rounded_gray"
+            android:paddingRight="13dp"
+            android:paddingLeft="13dp"
+            android:paddingBottom="2dp"
+
+            android:layout_gravity="center_vertical"
+
+
+
+            />
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

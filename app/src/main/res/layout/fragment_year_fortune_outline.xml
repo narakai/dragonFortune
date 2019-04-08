@@ -1,0 +1,1241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.TodayFortuneOutlineFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="2dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#fff"
+            android:orientation="horizontal"
+            android:padding="0dp"
+            >
+            <LinearLayout
+                android:clickable="true"
+                android:id="@+id/backButton"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                >
+                <Button
+                    android:layout_gravity="center_vertical"
+                    android:clickable="false"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/back"
+                    android:layout_marginLeft="17dp"
+                    />
+            </LinearLayout>
+
+
+
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/ScrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F7F7F7"
+            tools:context=".activity.TodayFortuneActivity"
+            android:orientation="vertical"
+            >
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="17dp"
+                    android:fontFamily="@font/notosanslight"
+                    android:includeFontPadding="false"
+                    android:text="신년운세"
+                    android:layout_marginTop="20dp"
+                    android:textColor="#000"
+                    android:textSize="24dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="17dp"
+                    android:background="#d1d1d1">
+
+
+                </LinearLayout>
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="2dp"
+                    android:background="#ffffff"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+
+                        android:background="#ffffff"
+                        android:orientation="horizontal"
+
+
+                        >
+
+                        <TextView
+                            android:id="@+id/txtUserName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginRight="2dp"
+                            android:fontFamily="@font/notom"
+                            android:includeFontPadding="false"
+                            android:text="현명규"
+                            android:textColor="#676767"
+                            android:textSize="15dp" />
+
+                        <TextView
+                            android:id="@+id/txtUserBio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="2dp"
+                            android:fontFamily="@font/notom"
+                            android:includeFontPadding="false"
+                            android:text="(男)"
+                            android:textColor="#676767" />
+
+                        <TextView
+                            android:id="@+id/txtBirth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="2dp"
+                            android:fontFamily="@font/notom"
+                            android:includeFontPadding="false"
+                            android:text="1983.10.22"
+                            android:textColor="#676767" />
+
+                        <TextView
+                            android:id="@+id/txtMoonSun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/notom"
+                            android:includeFontPadding="false"
+                            android:text=" 양력"
+                            android:textColor="#676767"
+
+                            />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <ImageView
+                            android:id="@+id/imgTail"
+                            android:layout_width="44dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginRight="12dp"
+                            android:src="@drawable/m12_01" />
+
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="2dp"
+                    android:background="#ffffff"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    
+                    android:background="#ffffff"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtToday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="18dp"
+                        android:fontFamily="@font/notosansregu"
+                        android:gravity="center"
+                        android:includeFontPadding="false"
+                        android:text="년 2월 12일"
+                        android:textColor="#000000" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/txtScore"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:fontFamily="@font/notosansregu"
+                        android:includeFontPadding="false"
+                        android:text="80"
+                        android:textColor="#000000"
+                        android:textSize="40dp"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="16dp"
+                        android:text="점"
+                        android:textColor="#14A2F6"
+                        android:textSize="18dp"
+                        android:layout_marginBottom="5dp"
+                        android:includeFontPadding="false"
+                        android:fontFamily="@font/notom"
+
+
+                        />
+
+
+                </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="2dp"
+                    android:background="#ffffff"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="5dp">
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+
+                    >
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"
+                        android:text="총운"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/notom"
+                        android:includeFontPadding="false"
+
+
+                        />
+                    <LinearLayout
+                        android:layout_width="15dp"
+                        android:layout_height="3dp"
+                        android:background="@drawable/rectangle"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+
+                        ></LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txtYearOutline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginRight="13dp"
+                        android:layout_marginBottom="7dp"
+                        android:text="운세 내용"
+                        android:textColor="#000000"
+                        android:textSize="18dp"
+
+                        android:fontFamily="@font/notosanslight"
+                        android:includeFontPadding="false"
+                        />
+
+                </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="2dp"
+                    android:background="#ffffff"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"
+                        android:text="올해의 사업거래운"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+
+
+                        />
+                    <LinearLayout
+                        android:layout_width="15dp"
+                        android:layout_height="3dp"
+                        android:background="@drawable/rectangle"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+
+                        ></LinearLayout>
+
+
+
+                    <TextView
+                        android:id="@+id/txtYearBusiness"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginRight="13dp"
+                        android:layout_marginBottom="7dp"
+                        android:text="운세 내용"
+                        android:textColor="#000000"
+                        android:textSize="18dp"
+
+                        android:fontFamily="@font/notosanslight"
+                        android:includeFontPadding="false"
+                        />
+
+                </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="2dp"
+                    android:background="#ffffff"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"
+                        android:text="올해의 연인애정운"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+
+
+                        />
+                    <LinearLayout
+                        android:layout_width="15dp"
+                        android:layout_height="3dp"
+                        android:background="@drawable/rectangle"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+
+                        ></LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/txtLove"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginRight="13dp"
+                        android:layout_marginBottom="7dp"
+                        android:fontFamily="@font/notosanslight"
+                        android:includeFontPadding="false"
+                        android:text="운세 내용"
+
+                        android:textColor="#000000"
+                        android:textSize="18dp" />
+                </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="2dp"
+                    android:background="#ffffff"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"
+                        android:text="올해의 건강질병운"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+
+
+                        />
+                    <LinearLayout
+                        android:layout_width="15dp"
+                        android:layout_height="3dp"
+                        android:background="@drawable/rectangle"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+
+                        ></LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/txtHealth"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginRight="13dp"
+                        android:layout_marginBottom="7dp"
+                        android:fontFamily="@font/notosanslight"
+                        android:includeFontPadding="false"
+                        android:text="운세 내용"
+
+                        android:textColor="#000000"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="2dp"
+                    android:background="#ffffff"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"
+                        android:text="올해의 여행이사운"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+
+
+                        />
+                    <LinearLayout
+                        android:layout_width="15dp"
+                        android:layout_height="3dp"
+                        android:background="@drawable/rectangle"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+
+                        ></LinearLayout>
+
+
+
+                    <TextView
+                        android:id="@+id/txtYearTrip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginRight="13dp"
+                        android:layout_marginBottom="7dp"
+                        android:text="운세 내용"
+                        android:textColor="#000000"
+                        android:textSize="18dp"
+
+                        android:fontFamily="@font/notosanslight"
+                        android:includeFontPadding="false"
+                        />
+
+                </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="2dp"
+                    android:background="#ffffff"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"
+                        android:text="올해의 직장관록운"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+
+
+                        />
+
+                    <LinearLayout
+                        android:layout_width="15dp"
+                        android:layout_height="3dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/rectangle"
+
+                        ></LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/txtWork"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginRight="13dp"
+                        android:layout_marginBottom="7dp"
+                        android:fontFamily="@font/notosanslight"
+                        android:includeFontPadding="false"
+                        android:text="운세 내용"
+
+                        android:textColor="#000000"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="2dp"
+                    android:background="#ffffff"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"
+                        android:text="재물운의 특성"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+
+
+                        />
+                    <LinearLayout
+                        android:layout_width="15dp"
+                        android:layout_height="3dp"
+                        android:background="@drawable/rectangle"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+
+                        ></LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/txtGoldNature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginRight="13dp"
+                        android:layout_marginBottom="7dp"
+                        android:fontFamily="@font/notosanslight"
+                        android:includeFontPadding="false"
+                        android:text="운세 내용"
+
+                        android:textColor="#000000"
+                        android:textSize="18dp" />
+                </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="2dp"
+                    android:background="#ffffff"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"
+                        android:text="재물 모으는법"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+
+
+                        />
+                    <LinearLayout
+                        android:layout_width="15dp"
+                        android:layout_height="3dp"
+                        android:background="@drawable/rectangle"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+
+                        ></LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/goldGather"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginRight="13dp"
+                        android:layout_marginBottom="7dp"
+                        android:text="운세 내용"
+                        android:textColor="#000000"
+                        android:textSize="18dp"
+
+                        android:fontFamily="@font/notosanslight"
+                        android:includeFontPadding="false"
+                        />
+                </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="2dp"
+                    android:background="#ffffff"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"
+                        android:text="재물 손실 막는법"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+
+
+                        />
+
+                    <LinearLayout
+                        android:layout_width="15dp"
+                        android:layout_height="3dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+                        android:background="@drawable/rectangle"
+
+                        ></LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/goldLoss"
+
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginRight="13dp"
+                        android:layout_marginBottom="7dp"
+                        android:fontFamily="@font/notosanslight"
+                        android:includeFontPadding="false"
+                        android:text="운세 내용"
+
+                        android:textColor="#000000"
+                        android:textSize="18dp" />
+                </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="2dp"
+                    android:background="#ffffff"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"
+                        android:text="재태크의 비법"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+
+
+                        />
+                    <LinearLayout
+                        android:layout_width="15dp"
+                        android:layout_height="3dp"
+                        android:background="@drawable/rectangle"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+
+                        ></LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/textInvest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginRight="13dp"
+                        android:layout_marginBottom="7dp"
+                        android:text="운세 내용"
+                        android:textColor="#000000"
+                        android:textSize="18dp"
+
+                        android:fontFamily="@font/notosanslight"
+                        android:includeFontPadding="false"
+                        />
+                </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#ffffff"
+                    app:cardCornerRadius="3dp"
+                    app:cardElevation="5dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="13dp"
+                        android:text="현재의 재물운"
+                        android:textColor="#000000"
+                        android:textSize="20dp"
+
+
+                        />
+                    <LinearLayout
+                        android:layout_width="15dp"
+                        android:layout_height="3dp"
+                        android:background="@drawable/rectangle"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="20dp"
+
+                        ></LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/txtRecenGold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginRight="13dp"
+                        android:layout_marginBottom="7dp"
+                        android:text="운세 내용"
+                        android:textColor="#000000"
+                        android:textSize="18dp"
+
+                        android:fontFamily="@font/notosanslight"
+                        android:includeFontPadding="false"
+                        />
+                </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginRight="2dp"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="5dp">
+
+                <HorizontalScrollView
+                    xmlns:tools="http://schemas.android.com/tool"
+                    android:id="@+id/horizontalScrollView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#fff"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+
+                            android:id="@+id/item_today_fortune"
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            >
+
+                            <RelativeLayout
+                                android:foreground="?attr/selectableItemBackground"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="1dp"
+                                android:background="#1F2A45"
+
+                                >
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="21dp"
+                                    android:layout_marginTop="24dp"
+                                    android:layout_marginRight="21dp"
+                                    android:layout_marginBottom="11dp"
+                                    android:orientation="vertical"
+                                    android:layout_centerInParent="true"
+                                    >
+
+                                    <ImageView
+                                        android:layout_width="32dp"
+                                        android:layout_height="28dp"
+                                        android:layout_gravity="center_horizontal"
+                                        android:src="@drawable/w_menu_01" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="17dp"
+                                        android:fontFamily="@font/notom"
+                                        android:includeFontPadding="false"
+                                        android:text="오늘의 운세"
+                                        android:textColor="#fff"
+                                        android:textSize="11dp"
+                                        android:layout_gravity="center_horizontal"
+                                        />
+
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/item_year_fortune"
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            >
+
+                            <RelativeLayout
+                                android:foreground="?attr/selectableItemBackground"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="1dp"
+                                android:background="#1F2A45"
+                                android:layout_gravity="center_horizontal"
+                                >
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="21dp"
+                                    android:layout_marginTop="24dp"
+                                    android:layout_marginRight="21dp"
+                                    android:layout_marginBottom="11dp"
+                                    android:orientation="vertical"
+                                    android:layout_centerInParent="true"
+                                    >
+
+                                    <ImageView
+                                        android:layout_width="32dp"
+                                        android:layout_height="28dp"
+                                        android:layout_gravity="center_horizontal"
+                                        android:src="@drawable/w_menu_02" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="17dp"
+                                        android:fontFamily="@font/notom"
+                                        android:includeFontPadding="false"
+                                        android:text=" 신년운세"
+                                        android:textColor="#fff"
+                                        android:textSize="11dp"
+                                        android:layout_gravity="center_horizontal"
+                                        />
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/item_tojung_fortune"
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            >
+
+                            <RelativeLayout
+                                android:foreground="?attr/selectableItemBackground"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="1dp"
+                                android:background="#1F2A45"
+                                android:layout_gravity="center_horizontal"
+                                >
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="21dp"
+                                    android:layout_marginTop="24dp"
+                                    android:layout_marginRight="21dp"
+                                    android:layout_marginBottom="11dp"
+                                    android:orientation="vertical"
+                                    android:layout_centerInParent="true"
+                                    >
+
+                                    <ImageView
+                                        android:layout_width="32dp"
+                                        android:layout_height="28dp"
+                                        android:layout_gravity="center_horizontal"
+                                        android:src="@drawable/w_menu_03" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="17dp"
+                                        android:fontFamily="@font/notom"
+                                        android:includeFontPadding="false"
+                                        android:text=" 토정비결"
+                                        android:textColor="#fff"
+                                        android:textSize="11dp"
+                                        android:layout_gravity="center_horizontal"
+                                        />
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/item_gold_fortune"
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            >
+
+                            <RelativeLayout
+                                android:foreground="?attr/selectableItemBackground"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="1dp"
+                                android:background="#1F2A45"
+                                android:layout_gravity="center_horizontal"
+                                >
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="21dp"
+                                    android:layout_marginTop="24dp"
+                                    android:layout_marginRight="21dp"
+                                    android:layout_marginBottom="11dp"
+                                    android:orientation="vertical"
+                                    android:layout_centerInParent="true"
+                                    >
+
+                                    <ImageView
+                                        android:layout_width="32dp"
+                                        android:layout_height="28dp"
+                                        android:layout_gravity="center_horizontal"
+                                        android:src="@drawable/w_menu_04" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="17dp"
+                                        android:fontFamily="@font/notom"
+                                        android:includeFontPadding="false"
+                                        android:text="재물운"
+                                        android:textColor="#fff"
+                                        android:textSize="11dp"
+                                        android:layout_gravity="center_horizontal"
+                                        />
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/item_love_fortune"
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            >
+
+                            <RelativeLayout
+                                android:foreground="?attr/selectableItemBackground"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="1dp"
+                                android:background="#1F2A45"
+                                android:layout_gravity="center_horizontal"
+                                >
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="21dp"
+                                    android:layout_marginTop="24dp"
+                                    android:layout_marginRight="21dp"
+                                    android:layout_marginBottom="11dp"
+                                    android:orientation="vertical"
+                                    android:layout_centerInParent="true"
+                                    >
+
+                                    <ImageView
+                                        android:layout_width="32dp"
+                                        android:layout_height="28dp"
+                                        android:layout_gravity="center_horizontal"
+                                        android:src="@drawable/w_menu_05" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="17dp"
+                                        android:fontFamily="@font/notom"
+                                        android:includeFontPadding="false"
+                                        android:text="궁합"
+                                        android:textColor="#fff"
+                                        android:textSize="11dp"
+                                        android:layout_gravity="center_horizontal"
+                                        />
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:id="@+id/item_today_tail_fortune"
+                            android:layout_width="130dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            >
+
+                            <RelativeLayout
+                                android:foreground="?attr/selectableItemBackground"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="1dp"
+                                android:background="#1F2A45"
+                                android:layout_gravity="center_horizontal"
+                                >
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="21dp"
+                                    android:layout_marginTop="24dp"
+                                    android:layout_marginRight="21dp"
+                                    android:layout_marginBottom="11dp"
+                                    android:orientation="vertical"
+                                    android:layout_centerInParent="true"
+                                    >
+
+                                    <ImageView
+                                        android:layout_width="32dp"
+                                        android:layout_height="28dp"
+                                        android:layout_gravity="center_horizontal"
+                                        android:src="@drawable/w_menu_06" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="17dp"
+                                        android:fontFamily="@font/notom"
+                                        android:includeFontPadding="false"
+                                        android:text="오늘의 띠별 운세"
+                                        android:textColor="#fff"
+                                        android:textSize="11dp" />
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </LinearLayout>
+
+
+
+
+
+
+
+
+
+                    </LinearLayout>
+
+
+                </HorizontalScrollView>
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+
+                android:clickable="true"
+                android:id="@+id/sharebutton"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="42dp"
+                android:layout_marginRight="2dp"
+                android:layout_marginBottom="70dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_navy"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/notosansregu"
+                    android:includeFontPadding="false"
+                    android:text="카톡으로 공유하기"
+                    android:textColor="#FFF35F"
+                    android:textSize="17dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

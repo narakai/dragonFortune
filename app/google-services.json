@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "1055354429223",
+    "firebase_url": "https://dragonfortune-1e35f.firebaseio.com",
+    "project_id": "dragonfortune-1e35f",
+    "storage_bucket": "dragonfortune-1e35f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055354429223:android:119256cc38ac5671",
+        "android_client_info": {
+          "package_name": "com.jeycorp.dragonFortune"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1055354429223-g8vdu9esqhps4e6h3krfcr5cj1kidmtp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jeycorp.dragonFortune",
+            "certificate_hash": "94221870384674b5c989153027cf5826da1f7f30"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCahg9QpVAhX5jSjTAiDivIbRChI_pHWSI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1055354429223-37gtqkjvrsftm8d0ihfug4ksfejga724.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

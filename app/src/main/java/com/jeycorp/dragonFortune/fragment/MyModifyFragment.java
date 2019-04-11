@@ -390,6 +390,7 @@ public class MyModifyFragment extends Fragment {
     }
 
     public void nextTab(){
+
         Button nextButton = view.findViewById(R.id.nextButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -473,6 +474,8 @@ public class MyModifyFragment extends Fragment {
                         pref.setOneLine2(txtBirthTime.getText().toString());
 
                         setScore();
+
+
 
 
 

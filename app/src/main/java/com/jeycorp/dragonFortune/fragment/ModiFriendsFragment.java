@@ -179,15 +179,12 @@ public class ModiFriendsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                oDialog.setTitle("태어난 시를 선택해주세요.")
-                        .setItems(oItems, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                txtBirthTime.setText(oItems[which]);
-                            }
-                        })
-                        .setCancelable(false)
-                        .show();
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), R.style.DialogTheme, date, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH));
+
+                datePickerDialog.getDatePicker().setMaxDate(myCalendar.getTimeInMillis());
+                datePickerDialog.show();
 
             }
         });
@@ -237,8 +234,6 @@ public class ModiFriendsFragment extends Fragment {
                                                 pref2.setOneLine2(null);
                                                 Toast.makeText(getContext(), "삭제되었습니다.", Toast.LENGTH_SHORT).show();
                                                 activity.onBackPressed();
-
-
                                             }
 
                                             break;

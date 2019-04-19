@@ -320,7 +320,7 @@
                                             android:layout_marginBottom="11dp"
                                             android:fontFamily="@font/notom"
                                             android:includeFontPadding="false"
-                                            android:text="신년운세"
+                                            android:text="2019 신년운세"
                                             android:textColor="#676767"
                                             android:textSize="15dp" />
                                     </LinearLayout>
@@ -371,7 +371,7 @@
                                             android:layout_marginBottom="11dp"
                                             android:fontFamily="@font/notom"
                                             android:includeFontPadding="false"
-                                            android:text="토정비결"
+                                            android:text="2019 토정비결"
                                             android:textColor="#676767"
                                             android:textSize="15dp" />
                                     </LinearLayout>
@@ -503,6 +503,7 @@
                 </FrameLayout>
 
             </ScrollView>
+
 
 
         </FrameLayout>

@@ -230,8 +230,7 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText et2 = new EditText(RegisterActivity.this);
         final EditText et3 = new EditText(RegisterActivity.this);
 
-        LayoutInflater inflater = getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.dialog_addmember,null);
+
 
 
         txtBirthday.setOnClickListener(new View.OnClickListener() {
@@ -239,13 +238,22 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                final View dialogView = inflater.inflate(R.layout.dialog_addmember,null);
+
                 builder.setView(dialogView);
-                builder.setTitle("생년월일을 입력하세요.");
+
 
                 builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(pref.getMUrl())));
+                        TextView txt_year  = dialogView.findViewById(R.id.txt_year);
+                        TextView txt_month  = dialogView.findViewById(R.id.txt_month);
+                        TextView txt_day  = dialogView.findViewById(R.id.txt_day);
+                        RadioGroup rg =dialogView.findViewById(R.id.solunar_group);
+                        RadioButton rb =dialogView.findViewById(rg.getCheckedRadioButtonId());
+
+                        txtBirthday.setText(txt_year.getText().toString() +". " + txt_month.getText().toString() + ". " +txt_day.getText().toString() +" "+rb.getText().toString()) ;
                         dialog.dismiss();
                     }
                 });
@@ -265,7 +273,9 @@ public class RegisterActivity extends AppCompatActivity {
                         dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#A2A2A2"));
                     }
                 });
+
                 dialog.show();
+
 
             }
         });

@@ -1,60 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+
+    >
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_33sdp"
         android:background="#fff"
         android:orientation="vertical"
+        android:layout_margin="@dimen/_22sdp"
+        android:layout_gravity="center_horizontal"
         >
 
         <TextView
+            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="새년월일을 입력하세요."
+            android:text=" 생년월일을 입력하세요."
+            android:fontFamily="@font/notosans"
+            android:includeFontPadding="false"
+            android:textStyle="bold"
+            android:textSize="@dimen/_16sdp"
+            android:textColor="#000"
+            android:layout_marginBottom="@dimen/_10sdp"
+
             />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_gravity="center_horizontal"
             >
             <EditText
+                android:id="@+id/txt_year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="1980"
+                android:textSize="@dimen/_22sdp"
+                android:inputType="numberDecimal"
+                android:theme="@style/EditTheme"
+                android:maxLength="4"
+
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="년"
-                android:textColor="#000"
+                android:textColor="#676767"
+                android:textSize="@dimen/_16sdp"
+
+
                 />
 
             <EditText
+                android:id="@+id/txt_month"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="00"
+                android:textSize="@dimen/_22sdp"
+                android:inputType="numberDecimal"
+                android:theme="@style/EditTheme"
+                android:maxLength="2"
+
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="월"
-                android:textColor="#000"
+                android:textColor="#676767"
+                android:textSize="@dimen/_16sdp"
                 />
 
             <EditText
+                android:id="@+id/txt_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="일"
+                android:hint="00"
+                android:textSize="@dimen/_22sdp"
+                android:inputType="numberDecimal"
+                android:theme="@style/EditTheme"
+                android:maxLength="2"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="년"
-                android:textColor="#000"
+                android:text="일"
+                android:textColor="#676767"
+                android:textSize="@dimen/_16sdp"
                 />
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/underline"
+            android:layout_gravity="center_horizontal"
+            >
+            <RadioGroup
+
+                android:id="@+id/solunar_group"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="5dp"
+                android:paddingBottom="10dp"
+                >
+
+                <RadioButton
+                    android:layout_marginRight="@dimen/_29sdp"
+
+
+                    android:id="@+id/rb_solar"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+
+
+                    android:layout_weight="1"
+                    android:buttonTint="#14A2F6"
+                    android:fontFamily="@font/notosansregu"
+                    android:includeFontPadding="false"
+                    android:text="양력"
+                    android:textSize="@dimen/_16sdp"
+
+                    />
+
+                <RadioButton
+                    android:layout_marginRight="@dimen/_7sdp"
+                    android:id="@+id/rb_lunar"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:buttonTint="#14A2F6"
+                    android:fontFamily="@font/notosansregu"
+                    android:includeFontPadding="false"
+                    android:text="음력"
+                    android:textSize="@dimen/_16sdp"
+                    />
+            </RadioGroup>
 
 
         </LinearLayout>

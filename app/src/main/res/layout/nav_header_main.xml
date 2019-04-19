@@ -133,7 +133,7 @@
                         android:id="@+id/test5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="가족, 연인 추가"
+                        android:text="가족, 연인 추가 및 수정"
                         android:fontFamily="@font/notosansregu"
                         android:includeFontPadding="false"
                         android:textSize="18dp"
@@ -164,432 +164,372 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
+                android:visibility="visible"
                 android:id="@+id/containerFriend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:background="#F7F7F7"
                 >
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginTop="23dp"
                     android:layout_marginBottom="23dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="19dp"
+
                     >
 
-                    <LinearLayout
-                        android:visibility="gone"
-
-                        android:id="@+id/containerModi1"
-                        android:layout_width="match_parent"
+                    <RadioGroup
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/rg_user"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
-
-                        android:background="#F7F7F7"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="11dp"
-                            android:layout_height="11dp"
-                            android:layout_gravity="center_vertical"
-
-                            android:layout_marginRight="8dp"
-                            android:background="@drawable/circle"
-
-                            android:orientation="vertical"
-
-                            ></LinearLayout>
-
-                        <TextView
-                            android:id="@+id/txtUser1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="5dp"
-                            android:fontFamily="@font/notosanslight"
-                            android:includeFontPadding="false"
-                            android:text="현명규"
-                            android:textColor="#000" />
-
-                        <TextView
-                            android:id="@+id/txtBirth1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="5dp"
-                            android:fontFamily="@font/notosanslight"
-                            android:includeFontPadding="false"
-                            android:text="1983.10.22"
-                            android:textColor="#000" />
-
-                        <TextView
-                            android:id="@+id/txtSolar1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="20dp"
-                            android:fontFamily="@font/notosanslight"
-                            android:includeFontPadding="false"
-                            android:text="(양력)"
-                            android:textColor="#000" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <TextView
-                            android:id="@+id/txtModifyButton1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:background="@drawable/rounded_gray"
-                            android:fontFamily="@font/notom"
-                            android:includeFontPadding="false"
-                            android:paddingLeft="13dp"
-                            android:paddingRight="13dp"
-                            android:paddingBottom="2dp"
-                            android:text="수정"
-                            android:textColor="#fff"
-
-                            android:textSize="14dp"
-
-
-                            />
-
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:visibility="gone"
-                        android:id="@+id/containerModi2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:background="#F7F7F7"
-                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
                         >
                         <LinearLayout
-                            android:orientation="vertical"
-                            android:id="@+id/bluecircle"
-                            android:layout_width="11dp"
-                            android:layout_height="11dp"
-
-                            android:background="@drawable/circle_gray"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="8dp"
-                            ></LinearLayout>
-                        <TextView
-                            android:id="@+id/txtUser2"
-                            android:layout_gravity="center_vertical"
+                            android:id="@+id/containerModi1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="현명규"
-                            android:layout_marginRight="5dp"
-                            android:textColor="#000"
-                            android:fontFamily="@font/notosanslight"
-                            android:includeFontPadding="false"
-                            />
-                        <TextView
-                            android:id="@+id/txtBirth2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1983.10.22"
-                            android:layout_marginRight="5dp"
-                            android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/notosanslight"
-                            android:includeFontPadding="false"
-                            android:textColor="#000"
-                            />
-                        <TextView
-                            android:id="@+id/txtSolar2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="(양력)"
-                            android:layout_marginRight="20dp"
-                            android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/notosanslight"
-                            android:includeFontPadding="false"
-                            android:textColor="#000"
-                            />
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="10dp"
+                            >
+                            <RadioButton
+                                android:clickable="false"
+                                android:id="@+id/rb_user1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="#14A2F6"/>
 
-                        <TextView
-                            android:id="@+id/txtModifyButton2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="수정"
-                            android:fontFamily="@font/notom"
-                            android:includeFontPadding="false"
-                            android:textSize="14dp"
-                            android:textColor="#fff"
-                            android:background="@drawable/rounded_gray"
-                            android:paddingRight="13dp"
-                            android:paddingLeft="13dp"
-                            android:paddingBottom="2dp"
+                            <LinearLayout
 
-                            android:layout_gravity="center_vertical"
+                                android:visibility="visible"
+                               android:layout_gravity="center_vertical"
+
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:background="#F7F7F7"
+                                android:orientation="horizontal">
 
 
 
-                            />
+                                <TextView
+
+                                    android:id="@+id/txtUser1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginRight="5dp"
+                                    android:fontFamily="@font/notosanslight"
+                                    android:includeFontPadding="false"
+                                    android:text="현명규"
+                                    android:textColor="#000" />
+
+                                <TextView
+                                    android:id="@+id/txtBirth1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginRight="5dp"
+                                    android:fontFamily="@font/notosanslight"
+                                    android:includeFontPadding="false"
+                                    android:text="1983.10.22"
+                                    android:textColor="#000" />
+
+                                <TextView
+                                    android:id="@+id/txtSolar1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginRight="20dp"
+                                    android:fontFamily="@font/notosanslight"
+                                    android:includeFontPadding="false"
+                                    android:text="(양력)"
+                                    android:textColor="#000" />
 
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:visibility="gone"
-                        android:id="@+id/containerModi3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:background="#F7F7F7"
-                        android:layout_marginTop="10dp"
-                        >
+
+
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+
                         <LinearLayout
-                            android:orientation="vertical"
-                            android:id="@+id/circle2"
-                            android:layout_width="11dp"
-                            android:layout_height="11dp"
-
-                            android:background="@drawable/circle_gray"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="8dp"
-                            ></LinearLayout>
-                        <TextView
-                            android:id="@+id/txtUser3"
-                            android:layout_gravity="center_vertical"
+                            android:id="@+id/containerModi2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="현명규"
-                            android:layout_marginRight="5dp"
-                            android:textColor="#000"
-                            android:fontFamily="@font/notosanslight"
-                            android:includeFontPadding="false"
-                            />
-                        <TextView
-                            android:id="@+id/txtBirth3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1983.10.22"
-                            android:layout_marginRight="5dp"
-                            android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/notosanslight"
-                            android:includeFontPadding="false"
-                            android:textColor="#000"
-                            />
-                        <TextView
-                            android:id="@+id/txtSolar3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="(양력)"
-                            android:layout_marginRight="20dp"
-                            android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/notosanslight"
-                            android:includeFontPadding="false"
-                            android:textColor="#000"
-                            />
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
+                            android:orientation="horizontal"
+                            android:layout_marginBottom="10dp"
+                            >
+                            <RadioButton
+                                android:clickable="false"
+                                android:id="@+id/rb_user2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="#14A2F6"
+                                />
+                            <LinearLayout
+                                android:layout_gravity="center_vertical"
+                                android:visibility="visible"
 
-                        <TextView
-                            android:id="@+id/txtModifyButton3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="수정"
-                            android:fontFamily="@font/notom"
-                            android:includeFontPadding="false"
-                            android:textSize="14dp"
-                            android:textColor="#fff"
-                            android:background="@drawable/rounded_gray"
-                            android:paddingRight="13dp"
-                            android:paddingLeft="13dp"
-                            android:paddingBottom="2dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:background="#F7F7F7"
+                                >
 
-                            android:layout_gravity="center_vertical"
+                                <TextView
+                                    android:id="@+id/txtUser2"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="현명규"
+                                    android:layout_marginRight="5dp"
+                                    android:textColor="#000"
+                                    android:fontFamily="@font/notosanslight"
+                                    android:includeFontPadding="false"
+                                    />
+                                <TextView
+                                    android:id="@+id/txtBirth2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="1983.10.22"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:fontFamily="@font/notosanslight"
+                                    android:includeFontPadding="false"
+                                    android:textColor="#000"
+                                    />
+                                <TextView
+                                    android:id="@+id/txtSolar2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="(양력)"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:fontFamily="@font/notosanslight"
+                                    android:includeFontPadding="false"
+                                    android:textColor="#000"
+                                    />
 
 
 
-                            />
 
+                            </LinearLayout>
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:visibility="gone"
-                        android:id="@+id/containerModi4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:background="#F7F7F7"
-                        android:layout_marginTop="10dp"
-                        >
+                        </LinearLayout>
+
                         <LinearLayout
-                            android:orientation="vertical"
-                            android:id="@+id/circle3"
-                            android:layout_width="11dp"
-                            android:layout_height="11dp"
-
-                            android:background="@drawable/circle_gray"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="8dp"
-                            ></LinearLayout>
-                        <TextView
-                            android:id="@+id/txtUser4"
-                            android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="10dp"
+                            android:id="@+id/containerModi3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="현명규"
-                            android:layout_marginRight="5dp"
-                            android:textColor="#000"
-                            android:fontFamily="@font/notosanslight"
-                            android:includeFontPadding="false"
-                            />
-                        <TextView
-                            android:id="@+id/txtBirth4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1983.10.22"
-                            android:layout_marginRight="5dp"
-                            android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/notosanslight"
-                            android:includeFontPadding="false"
-                            android:textColor="#000"
-                            />
-                        <TextView
-                            android:id="@+id/txtSolar4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="(양력)"
-                            android:layout_marginRight="20dp"
-                            android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/notosanslight"
-                            android:includeFontPadding="false"
-                            android:textColor="#000"
-                            />
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-                        />
+                            android:orientation="horizontal"
+                            >
+                            <RadioButton
+                                android:clickable="false"
+                                android:id="@+id/rb_user3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="#14A2F6"/>
+                            <LinearLayout
+                                android:visibility="visible"
 
-                        <TextView
-                            android:id="@+id/txtModifyButton4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="수정"
-                            android:fontFamily="@font/notom"
-                            android:includeFontPadding="false"
-                            android:textSize="14dp"
-                            android:textColor="#fff"
-                            android:background="@drawable/rounded_gray"
-                            android:paddingRight="13dp"
-                            android:paddingLeft="13dp"
-                            android:paddingBottom="2dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:background="#F7F7F7"
+                                android:layout_gravity="center_vertical"
 
-                            android:layout_gravity="center_vertical"
+                                >
+
+                                <TextView
+                                    android:id="@+id/txtUser3"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="현명규"
+                                    android:layout_marginRight="5dp"
+                                    android:textColor="#000"
+                                    android:fontFamily="@font/notosanslight"
+                                    android:includeFontPadding="false"
+                                    />
+                                <TextView
+                                    android:id="@+id/txtBirth3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="1983.10.22"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:fontFamily="@font/notosanslight"
+                                    android:includeFontPadding="false"
+                                    android:textColor="#000"
+                                    />
+                                <TextView
+                                    android:id="@+id/txtSolar3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="(양력)"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:fontFamily="@font/notosanslight"
+                                    android:includeFontPadding="false"
+                                    android:textColor="#000"
+                                    />
 
 
 
-                            />
+                            </LinearLayout>
 
 
-                    </LinearLayout>
-                    <LinearLayout
-                        android:visibility="gone"
-                        android:id="@+id/containerModi5"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:background="#F7F7F7"
-                        android:layout_marginTop="10dp"
-                        >
+                        </LinearLayout>
+
                         <LinearLayout
-                            android:orientation="vertical"
-                            android:id="@+id/circle4"
-                            android:layout_width="11dp"
-                            android:layout_height="11dp"
-
-                            android:background="@drawable/circle_gray"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginRight="8dp"
-                            ></LinearLayout>
-                        <TextView
-                            android:id="@+id/txtUser5"
-                            android:layout_gravity="center_vertical"
+                            android:layout_marginBottom="10dp"
+                            android:id="@+id/containerModi4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="현명규"
-                            android:layout_marginRight="5dp"
-                            android:textColor="#000"
-                            android:fontFamily="@font/notosanslight"
-                            android:includeFontPadding="false"
-                            />
-                        <TextView
-                            android:id="@+id/txtBirth5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1983.10.22"
-                            android:layout_marginRight="5dp"
-                            android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/notosanslight"
-                            android:includeFontPadding="false"
-                            android:textColor="#000"
-                            />
-                        <TextView
-                            android:id="@+id/txtSolar5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="(양력)"
-                            android:layout_marginRight="20dp"
-                            android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/notosanslight"
-                            android:includeFontPadding="false"
-                            android:textColor="#000"
-                            />
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
+                            android:orientation="horizontal"
+                            >
+                            <RadioButton
+                                android:clickable="false"
+                                android:id="@+id/rb_user4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:buttonTint="#14A2F6"/>
+                            <LinearLayout
+                                android:visibility="visible"
 
-                        <TextView
-                            android:id="@+id/txtModifyButton5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="수정"
-                            android:fontFamily="@font/notom"
-                            android:includeFontPadding="false"
-                            android:textSize="14dp"
-                            android:textColor="#fff"
-                            android:background="@drawable/rounded_gray"
-                            android:paddingRight="13dp"
-                            android:paddingLeft="13dp"
-                            android:paddingBottom="2dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:background="#F7F7F7"
+                                android:layout_gravity="center_vertical"
+                                >
 
-                            android:layout_gravity="center_vertical"
+                                <TextView
+                                    android:id="@+id/txtUser4"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="현명규"
+                                    android:layout_marginRight="5dp"
+                                    android:textColor="#000"
+                                    android:fontFamily="@font/notosanslight"
+                                    android:includeFontPadding="false"
+                                    />
+                                <TextView
+                                    android:id="@+id/txtBirth4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="1983.10.22"
+                                    android:layout_marginRight="5dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:fontFamily="@font/notosanslight"
+                                    android:includeFontPadding="false"
+                                    android:textColor="#000"
+                                    />
+                                <TextView
+                                    android:id="@+id/txtSolar4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="(양력)"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_gravity="center_vertical"
+                                    android:fontFamily="@font/notosanslight"
+                                    android:includeFontPadding="false"
+                                    android:textColor="#000"
+                                    />
+
+                                />
 
 
 
-                            />
+                            </LinearLayout>
+
+                        </LinearLayout>
+                   <LinearLayout
+                       android:id="@+id/containerModi5"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal"
+                       >
+                       <RadioButton
+                           android:clickable="false"
+                           android:id="@+id/rb_user5"
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:buttonTint="#14A2F6"
+                           />
+                       <LinearLayout
+                           android:visibility="visible"
+
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           android:orientation="horizontal"
+                           android:background="#F7F7F7"
+                           android:layout_gravity="center_vertical"
+                           >
+
+                           <TextView
+                               android:id="@+id/txtUser5"
+                               android:layout_gravity="center_vertical"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="현명규"
+                               android:layout_marginRight="5dp"
+                               android:textColor="#000"
+                               android:fontFamily="@font/notosanslight"
+                               android:includeFontPadding="false"
+                               />
+                           <TextView
+                               android:id="@+id/txtBirth5"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="1983.10.22"
+                               android:layout_marginRight="5dp"
+                               android:layout_gravity="center_vertical"
+                               android:fontFamily="@font/notosanslight"
+                               android:includeFontPadding="false"
+                               android:textColor="#000"
+                               />
+                           <TextView
+                               android:id="@+id/txtSolar5"
+                               android:layout_width="wrap_content"
+                               android:layout_height="wrap_content"
+                               android:text="(양력)"
+                               android:layout_marginRight="20dp"
+                               android:layout_gravity="center_vertical"
+                               android:fontFamily="@font/notosanslight"
+                               android:includeFontPadding="false"
+                               android:textColor="#000"
+                               />
 
 
-                    </LinearLayout>
+
+
+
+                       </LinearLayout>
+
+                   </LinearLayout>
+
+
+
+                    </RadioGroup>
 
 
                 </LinearLayout>
 
+
             </LinearLayout>
 
             <LinearLayout
-                android:clickable="true"
                 android:background="@android:color/white"
-                android:foreground="?attr/selectableItemBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"

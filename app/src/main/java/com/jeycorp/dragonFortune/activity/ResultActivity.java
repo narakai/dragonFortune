@@ -189,8 +189,8 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
         if(intent.getStringExtra("신년")!=null){
 //                String newYear =intent.getStringExtra("신년");
             if(intent.getStringExtra("신년").equals("신년")) {
-                txt_result.setText("신년운세를\n풀이 중 입니다.");
-                resultComment="신년운세";
+                txt_result.setText("2019 신년운세를\n풀이 중 입니다.");
+                resultComment="2019 신년운세";
 
 
             }
@@ -199,8 +199,8 @@ public class ResultActivity extends BaseActivity implements View.OnClickListener
         //토정
         if(intent.getStringExtra("토정")!=null){
             if(intent.getStringExtra("토정").equals("토정")){
-                txt_result.setText("토정비결을\n풀이 중 입니다.");
-                resultComment="토정비결";
+                txt_result.setText("2019 토정비결을\n풀이 중 입니다.");
+                resultComment="2019 토정비결";
             }
         }
         //재물

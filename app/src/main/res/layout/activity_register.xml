@@ -30,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
 
+
         android:orientation="horizontal">
 
         <believe.cht.fadeintextview.TextView
@@ -41,6 +42,7 @@
             android:textColor="#000"
             android:textSize="27dp"
             app:letterDuration="111"
+            android:layout_marginBottom="15dp"
 
             />
 
@@ -57,7 +59,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
+
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/notosanslight"
         android:includeFontPadding="false"

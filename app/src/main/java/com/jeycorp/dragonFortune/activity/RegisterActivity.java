@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     CharSequence[] oItems =
-            {"모름", "子 (23:30) ~ (01:29)", "丑 (01:30) ~ (03:29)", "寅 (03:30) ~ (05:29)", "卯 (05:30) ~ (07:29)", "辰 (07:30) ~ (09:29)",
+            {"태어난 시 모름", "子 (23:30) ~ (01:29)", "丑 (01:30) ~ (03:29)", "寅 (03:30) ~ (05:29)", "卯 (05:30) ~ (07:29)", "辰 (07:30) ~ (09:29)",
                     "巳 (09:30) ~ (11:29)", "午 (11:30) ~ (13:29)", "未 (13:30) ~ (15:29)", "申 (15:30) ~ (17:29)", "酉 (17:30) ~ (19:29)", "戌 (19:30) ~ (21:29)", "亥 (21:30) ~ (23:29)"
             };
 
@@ -110,9 +110,11 @@ public class RegisterActivity extends AppCompatActivity {
         txtUserName.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                LinearLayout title_layout = findViewById(R.id.title_layout);
-                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) title_layout.getLayoutParams();
-                params.topMargin = -530;
+//                LinearLayout title_layout = findViewById(R.id.title_layout);
+//                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) title_layout.getLayoutParams();
+//                params.topMargin = -530;
+                removeTitle();
+                txtUserName.requestFocus();
                 return false;
             }
         });
@@ -227,11 +229,10 @@ public class RegisterActivity extends AppCompatActivity {
                                 LinearLayout title_layout = findViewById(R.id.title_layout);
                                 ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) title_layout.getLayoutParams();
                                 if(isVisible==true){
-                                    params.topMargin = 100;
-
+                                    removeTitle();
                                 }else {
+                                    showTitle();
 
-                                    params.topMargin = -530;
                                 }
                             }
                         });
@@ -286,6 +287,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+
                 final AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
                 LayoutInflater inflater = getLayoutInflater();
                 final View dialogView = inflater.inflate(R.layout.dialog_addmember, null);
@@ -294,10 +297,17 @@ public class RegisterActivity extends AppCompatActivity {
                 final TextView txt_month = dialogView.findViewById(R.id.txt_month);
                 final TextView txt_day = dialogView.findViewById(R.id.txt_day);
 
+
                 builder.setView(dialogView);
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,InputMethodManager.HIDE_IMPLICIT_ONLY);
+
+
                 txt_year.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
 
                     }
 
@@ -458,6 +468,8 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
 
+
+
                 dialog.show();
 
 
@@ -504,6 +516,15 @@ public class RegisterActivity extends AppCompatActivity {
             return false;
         }
 
+    }
+
+    public void removeTitle(){
+       LinearLayout title_layout =  findViewById(R.id.title_layout);
+        title_layout.setVisibility(View.GONE);
+    }
+    public void showTitle(){
+        LinearLayout title_layout =  findViewById(R.id.title_layout);
+        title_layout.setVisibility(View.VISIBLE);
     }
 
     public void setScore() {
@@ -705,7 +726,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String time = txtBirthTime.getText().toString();
 
                 switch (time) {
-                    case "모름":
+                    case "태어난 시 모름":
                         pref.setHour("00");
                         break;
                     case "子 (23:30) ~ (01:29)":

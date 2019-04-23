@@ -73,7 +73,7 @@ public class ModiFriendsFragment extends Fragment {
     private MainActivity activity;
 
     CharSequence[] oItems =
-            {"모름", "子 (23:30) ~ (01:29)", "丑 (01:30) ~ (03:29)", "寅 (03:30) ~ (05:29)", "卯 (05:30) ~ (07:29)", "辰 (07:30) ~ (09:29)",
+            {"태어난 시 모름", "子 (23:30) ~ (01:29)", "丑 (01:30) ~ (03:29)", "寅 (03:30) ~ (05:29)", "卯 (05:30) ~ (07:29)", "辰 (07:30) ~ (09:29)",
                     "巳 (09:30) ~ (11:29)", "午 (11:30) ~ (13:29)", "未 (13:30) ~ (15:29)", "申 (15:30) ~ (17:29)", "酉 (17:30) ~ (19:29)", "戌 (19:30) ~ (21:29)", "亥 (21:30) ~ (23:29)"
             };
 
@@ -905,7 +905,7 @@ public class ModiFriendsFragment extends Fragment {
                                     }
                                     String time = txtBirthTime.getText().toString();
                                     switch (time) {
-                                        case "모름":
+                                        case "태어난 시 모름":
                                             pref2.setHour("00");
                                             break;
                                         case "子 (23:30) ~ (01:29)":
@@ -977,7 +977,7 @@ public class ModiFriendsFragment extends Fragment {
                                     }
                                     String time = txtBirthTime.getText().toString();
                                     switch (time) {
-                                        case "모름":
+                                        case "태어난 시 모름":
                                             pref3.setHour("00");
                                             break;
                                         case "子 (23:30) ~ (01:29)":
@@ -1049,7 +1049,7 @@ public class ModiFriendsFragment extends Fragment {
                                     }
                                     String time = txtBirthTime.getText().toString();
                                     switch (time) {
-                                        case "모름":
+                                        case "태어난 시 모름":
                                             pref4.setHour("00");
                                             break;
                                         case "子 (23:30) ~ (01:29)":
@@ -1121,7 +1121,7 @@ public class ModiFriendsFragment extends Fragment {
                                     }
                                     String time = txtBirthTime.getText().toString();
                                     switch (time) {
-                                        case "모름":
+                                        case "태어난 시 모름":
                                             pref5.setHour("00");
                                             break;
                                         case "子 (23:30) ~ (01:29)":

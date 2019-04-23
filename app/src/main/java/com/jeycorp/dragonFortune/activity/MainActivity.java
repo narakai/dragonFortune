@@ -2,6 +2,7 @@ package com.jeycorp.dragonFortune.activity;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -11,11 +12,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.telecom.Call;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -43,6 +49,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.bumptech.glide.request.animation.NoAnimation;
 import com.github.lzyzsd.circleprogress.DonutProgress;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -95,7 +102,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     MenuItem button;
 
-    RadioGroup rg_users;
+    RadioGroup rg_user;
     RadioButton rb_user1, rb_user2, rb_user3, rb_user4, rb_user5;
     FrameLayout modiFrame,modiFrame2;
 
@@ -170,6 +177,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         pref4 = new PreferenceManager4(this);
         pref5 = new PreferenceManager5(this);
 
+        rg_user = header.findViewById(R.id.rg_user);
         rb_user1 = header.findViewById(R.id.rb_user1);
         rb_user2 = header.findViewById(R.id.rb_user2);
         rb_user3 = header.findViewById(R.id.rb_user3);
@@ -292,25 +300,45 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             TextView txtUser1 = header.findViewById(R.id.txtUser1);
             TextView txtBirth1 = header.findViewById(R.id.txtBirth1);
             TextView txtSolar1 = header.findViewById(R.id.txtSolar1);
-//            TextView txtModifyButton1 = header.findViewById(R.id.txtModifyButton1);
+
+            TextView txtUser1_1 = findViewById(R.id.txtUser1);
+            TextView txtBirth1_1 = findViewById(R.id.txtBirth1);
+            TextView txtSolar1_1 = findViewById(R.id.txtSolar1);
+
+            LinearLayout modifyButton1 =findViewById(R.id.modifyButton1);
+            modifyButton1.setVisibility(View.VISIBLE);
 
 
             txtUser1.setText(pref.getName());
+            txtUser1_1.setText(pref.getName());
+
             txtBirth1.setText(pref.getOneLine().substring(0, 12));
+            txtBirth1_1.setText(pref.getOneLine().substring(0, 12));
+
             if (pref.getSolunar().equals("solar")) {
                 txtSolar1.setText("(양력)");
             } else {
                 txtSolar1.setText("(음력)");
             }
 
-//            txtModifyButton1.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    txtModify(v);
-//
-//                }
-//            });
+            if (pref.getSolunar().equals("solar")) {
+                txtSolar1_1.setText("(양력)");
+            } else {
+                txtSolar1_1.setText("(음력)");
+            }
+
+
+            modifyButton1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    txtModify(v);
+                    close_ModiFrame();
+
+
+                }
+            });
         }
+
 
         if (pref2.getName() != null) {
             LinearLayout containerFriend = header.findViewById(R.id.containerFriend);
@@ -322,41 +350,66 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             TextView txtUser1 = header.findViewById(R.id.txtUser1);
             TextView txtBirth1 = header.findViewById(R.id.txtBirth1);
             TextView txtSolar1 = header.findViewById(R.id.txtSolar1);
-//            TextView txtModifyButton1 = header.findViewById(R.id.txtModifyButton1);
-            RadioButton radioButton1 = header.findViewById(R.id.rb_user2);
 
-//            txtModifyButton1.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    txtModify(v);
-//
-//                }
-//            });
+            TextView txtUser1_1 = findViewById(R.id.txtUser1);
+            TextView txtBirth1_1 = findViewById(R.id.txtBirth1);
+            TextView txtSolar1_1 = findViewById(R.id.txtSolar1);
+
+
+
+            RadioButton radioButton1 = header.findViewById(R.id.rb_user2);
+            LinearLayout modifyButton2 = findViewById(R.id.modifyButton2);
+            modifyButton2.setVisibility(View.VISIBLE);
+
+            modifyButton2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    txtModify(v);
+                    close_ModiFrame();
+
+                }
+            });
 
 
             TextView txtUser2 = header.findViewById(R.id.txtUser2);
             TextView txtBirth2 = header.findViewById(R.id.txtBirth2);
             TextView txtSolar2 = header.findViewById(R.id.txtSolar2);
-//            TextView txtModifyButton2 = header.findViewById(R.id.txtModifyButton2);
 
-//            txtModifyButton2.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    ModiFriendsFragment tfo = new ModiFriendsFragment(activity);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putInt("id", 2);
-//                    tfo.setArguments(bundle);
-//                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.left_in, R.anim.right_out).add(R.id.containerMain, tfo, "ModiFriendsFragment").addToBackStack(null).commit();
-//                    drawer.closeDrawers();
-//                }
-//            });
+            TextView txtUser2_1 = findViewById(R.id.txtUser2);
+            TextView txtBirth2_1 = findViewById(R.id.txtBirth2);
+            TextView txtSolar2_1 = findViewById(R.id.txtSolar2);
+
+
+            modifyButton2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ModiFriendsFragment tfo = new ModiFriendsFragment(activity);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("id", 2);
+                    tfo.setArguments(bundle);
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.left_in, R.anim.right_out).add(R.id.containerMain, tfo, "ModiFriendsFragment").addToBackStack(null).commit();
+                    drawer.closeDrawers();
+                    close_ModiFrame();
+                }
+            });
+
 
             txtUser1.setText(pref.getName());
+            txtUser1_1.setText(pref.getName());
+
             txtBirth1.setText(pref.getOneLine().substring(0, 12));
+            txtBirth1_1.setText(pref.getOneLine().substring(0, 12));
+
             if (pref.getSolunar().equals("solar")) {
                 txtSolar1.setText("(양력)");
             } else {
                 txtSolar1.setText("(음력)");
+            }
+
+            if (pref.getSolunar().equals("solar")) {
+                txtSolar1_1.setText("(양력)");
+            } else {
+                txtSolar1_1.setText("(음력)");
             }
 
             txtUser2.setText(pref2.getName());
@@ -366,39 +419,95 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             } else {
                 txtSolar2.setText("(음력)");
             }
+
+            txtUser2_1.setText(pref2.getName());
+            txtBirth2_1.setText(pref2.getOneLine().substring(0, 12));
+            if (pref2.getSolunar().equals("solar")) {
+                txtSolar2_1.setText("(양력)");
+            } else {
+                txtSolar2_1.setText("(음력)");
+            }
+
+
             containerModi1.setVisibility(View.VISIBLE);
             containerModi2.setVisibility(View.VISIBLE);
+
+
+
+
 
             containerModi2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    rb_user2.setChecked(true);
-                    pref.setName(pref2.getName());
-                    pref.setYear(pref2.getYear());
-                    pref.setMonth(pref2.getMonth());
-                    pref.setDay(pref2.getDay());
-                    pref.setHour(pref2.getHour());
-                    pref.setMin(pref2.getMin());
-                    pref.setOneLine(pref2.getOneLine());
-                    pref.setOneLine2(pref2.getOneLine2());
-                    pref.setSex(pref2.getSex());
-                    pref.setSolunar(pref2.getSolunar());
-                    pref2.setName(name);
-                    pref2.setYear(year);
-                    pref2.setMonth(month);
-                    pref2.setDay(day);
-                    pref2.setHour(hour);
-                    pref2.setMin(min);
-                    pref2.setOneLine(oneLine);
-                    pref2.setOneLine2(onLine2);
-                    pref2.setSex(sex);
-                    pref2.setSolunar(solunar);
-                    finish();
-                    startActivity(getIntent());
-                    drawer.closeDrawers();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("기본사용자 변경");
+                    builder.setMessage("기본 사용자를 \'"+pref2.getName()+"\'님으로 변경 하시겠습니까?");
+                    builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            rb_user2.setChecked(true);
+                            pref.setName(pref2.getName());
+                            pref.setYear(pref2.getYear());
+                            pref.setMonth(pref2.getMonth());
+                            pref.setDay(pref2.getDay());
+                            pref.setHour(pref2.getHour());
+                            pref.setMin(pref2.getMin());
+                            pref.setOneLine(pref2.getOneLine());
+                            pref.setOneLine2(pref2.getOneLine2());
+                            pref.setSex(pref2.getSex());
+                            pref.setSolunar(pref2.getSolunar());
+                            pref2.setName(name);
+                            pref2.setYear(year);
+                            pref2.setMonth(month);
+                            pref2.setDay(day);
+                            pref2.setHour(hour);
+                            pref2.setMin(min);
+                            pref2.setOneLine(oneLine);
+                            pref2.setOneLine2(onLine2);
+                            pref2.setSex(sex);
+                            pref2.setSolunar(solunar);
+                            drawer.closeDrawers();
+
 //                    setScore();
-                    Toast.makeText(MainActivity.this, "기본 사용자가 변경되었습니다.", Toast.LENGTH_SHORT).show();
+                            set_rb();
+
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    startActivity(getIntent().setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                                    finish();
+
+
+                                }
+                            },  250);
+
+
+                            Toast.makeText(MainActivity.this, "기본 사용자가 변경되었습니다.", Toast.LENGTH_SHORT).show();
+
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setCancelable(false);
+
+                    final AlertDialog dialog = builder.create();
+                    dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                        @Override
+                        public void onShow(DialogInterface arg0) {
+                            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#14A2F6"));
+                            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#A2A2A2"));
+                        }
+                    });
+                    dialog.show();
+
+
                 }
             });
 
@@ -416,7 +525,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             TextView txtUser3 = header.findViewById(R.id.txtUser3);
             TextView txtBirth3 = header.findViewById(R.id.txtBirth3);
             TextView txtSolar3 = header.findViewById(R.id.txtSolar3);
-//            TextView txtModifyButton3 = header.findViewById(R.id.txtModifyButton3);
+
+            TextView txtUser3_1 = findViewById(R.id.txtUser3);
+            TextView txtBirth3_1 = findViewById(R.id.txtBirth3);
+            TextView txtSolar3_1 = findViewById(R.id.txtSolar3);
+
+
+            LinearLayout modifyButton3 = findViewById(R.id.modifyButton3);
+            modifyButton3.setVisibility(View.VISIBLE);
 
             containerModi3.setVisibility(View.VISIBLE);
 
@@ -428,49 +544,102 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 txtSolar3.setText("(음력)");
             }
 
-//            txtModifyButton3.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    ModiFriendsFragment tfo = new ModiFriendsFragment(activity);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putInt("id", 3);
-//                    tfo.setArguments(bundle);
-//                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.left_in, R.anim.right_out).add(R.id.containerMain, tfo, "ModiFriendsFragment").addToBackStack(null).commit();
-//                    drawer.closeDrawers();
-//                }
-//            });
+            txtUser3_1.setText(pref3.getName());
+            txtBirth3_1.setText(pref3.getOneLine().substring(0, 12));
+            if (pref3.getSolunar().equals("solar")) {
+                txtSolar3_1.setText("(양력)");
+            } else {
+                txtSolar3_1.setText("(음력)");
+            }
+
+
+
+            modifyButton3.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ModiFriendsFragment tfo = new ModiFriendsFragment(activity);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("id", 3);
+                    tfo.setArguments(bundle);
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.left_in, R.anim.right_out).add(R.id.containerMain, tfo, "ModiFriendsFragment").addToBackStack(null).commit();
+                    drawer.closeDrawers();
+                    close_ModiFrame();
+                }
+            });
 
 
             containerModi3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    rb_user3.setChecked(true);
-                    pref.setName(pref3.getName());
-                    pref.setYear(pref3.getYear());
-                    pref.setMonth(pref3.getMonth());
-                    pref.setDay(pref3.getDay());
-                    pref.setHour(pref3.getHour());
-                    pref.setMin(pref3.getMin());
-                    pref.setOneLine(pref3.getOneLine());
-                    pref.setOneLine2(pref3.getOneLine2());
-                    pref.setSex(pref3.getSex());
-                    pref.setSolunar(pref3.getSolunar());
-                    pref3.setName(name);
-                    pref3.setYear(year);
-                    pref3.setMonth(month);
-                    pref3.setDay(day);
-                    pref3.setHour(hour);
-                    pref3.setMin(min);
-                    pref3.setOneLine(oneLine);
-                    pref3.setOneLine2(onLine2);
-                    pref3.setSex(sex);
-                    pref3.setSolunar(solunar);
-                    finish();
-                    startActivity(getIntent());
-//                    drawer.closeDrawers();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("기본사용자 변경");
+                    builder.setMessage("기본 사용자를 \'"+pref3.getName()+"\'님으로 변경 하시겠습니까?");
+                    builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            rb_user3.setChecked(true);
+                            pref.setName(pref3.getName());
+                            pref.setYear(pref3.getYear());
+                            pref.setMonth(pref3.getMonth());
+                            pref.setDay(pref3.getDay());
+                            pref.setHour(pref3.getHour());
+                            pref.setMin(pref3.getMin());
+                            pref.setOneLine(pref3.getOneLine());
+                            pref.setOneLine2(pref3.getOneLine2());
+                            pref.setSex(pref3.getSex());
+                            pref.setSolunar(pref3.getSolunar());
+                            pref3.setName(name);
+                            pref3.setYear(year);
+                            pref3.setMonth(month);
+                            pref3.setDay(day);
+                            pref3.setHour(hour);
+                            pref3.setMin(min);
+                            pref3.setOneLine(oneLine);
+                            pref3.setOneLine2(onLine2);
+                            pref3.setSex(sex);
+                            pref3.setSolunar(solunar);
+//                    finish();
+//                    startActivity(getIntent());
+                            drawer.closeDrawers();
 //                    setScore();
-                    Toast.makeText(MainActivity.this, "기본 사용자가 변경되었습니다.", Toast.LENGTH_SHORT).show();
+                            set_rb();
+
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    startActivity(getIntent().setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                                    finish();
+
+
+                                }
+                            },  250);
+
+                            Toast.makeText(MainActivity.this, "기본 사용자가 변경되었습니다.", Toast.LENGTH_SHORT).show();
+
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setCancelable(false);
+
+                    final AlertDialog dialog = builder.create();
+                    dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                        @Override
+                        public void onShow(DialogInterface arg0) {
+                            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#14A2F6"));
+                            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#A2A2A2"));
+                        }
+                    });
+                    dialog.show();
+
+
                 }
             });
 
@@ -488,7 +657,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             TextView txtUser4 = header.findViewById(R.id.txtUser4);
             TextView txtBirth4 = header.findViewById(R.id.txtBirth4);
             TextView txtSolar4 = header.findViewById(R.id.txtSolar4);
-//            TextView txtModifyButton4 = header.findViewById(R.id.txtModifyButton4);
+
+            TextView txtUser4_1 = findViewById(R.id.txtUser4);
+            TextView txtBirth4_1 = findViewById(R.id.txtBirth4);
+            TextView txtSolar4_1 = findViewById(R.id.txtSolar4);
+
+            LinearLayout modifyButton4 = findViewById(R.id.modifyButton4);
+            modifyButton4.setVisibility(View.VISIBLE);
             Log.e("pref4", "" + pref4.getName());
             containerModi4.setVisibility(View.VISIBLE);
 
@@ -500,48 +675,100 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 txtSolar4.setText("(음력)");
             }
 
-//            txtModifyButton4.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    ModiFriendsFragment tfo = new ModiFriendsFragment(activity);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putInt("id", 4);
-//                    tfo.setArguments(bundle);
-//                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.left_in, R.anim.right_out).add(R.id.containerMain, tfo, "ModiFriendsFragment").addToBackStack(null).commit();
-//                    drawer.closeDrawers();
-//                }
-//            });
+            txtUser4_1.setText(pref4.getName());
+            txtBirth4_1.setText(pref4.getOneLine().substring(0, 12));
+            if (pref4.getSolunar().equals("solar")) {
+                txtSolar4_1.setText("(양력)");
+            } else {
+                txtSolar4_1.setText("(음력)");
+            }
+
+            modifyButton4.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ModiFriendsFragment tfo = new ModiFriendsFragment(activity);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("id", 4);
+                    tfo.setArguments(bundle);
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.left_in, R.anim.right_out).add(R.id.containerMain, tfo, "ModiFriendsFragment").addToBackStack(null).commit();
+                    drawer.closeDrawers();
+                    close_ModiFrame();
+                }
+            });
+
+
 
             containerModi4.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    rb_user4.setChecked(true);
-                    pref.setName(pref4.getName());
-                    pref.setYear(pref4.getYear());
-                    pref.setMonth(pref4.getMonth());
-                    pref.setDay(pref4.getDay());
-                    pref.setHour(pref4.getHour());
-                    pref.setMin(pref4.getMin());
-                    pref.setOneLine(pref4.getOneLine());
-                    pref.setOneLine2(pref4.getOneLine2());
-                    pref.setSex(pref4.getSex());
-                    pref.setSolunar(pref4.getSolunar());
-                    pref4.setName(name);
-                    pref4.setYear(year);
-                    pref4.setMonth(month);
-                    pref4.setDay(day);
-                    pref4.setHour(hour);
-                    pref4.setMin(min);
-                    pref4.setOneLine(oneLine);
-                    pref4.setOneLine2(onLine2);
-                    pref4.setSex(sex);
-                    pref4.setSolunar(solunar);
-                    finish();
-                    startActivity(getIntent());
-//                    drawer.closeDrawers();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("기본사용자 변경");
+                    builder.setMessage("기본 사용자를 \'"+pref4.getName()+"\'님으로 변경 하시겠습니까?");
+                    builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            rb_user4.setChecked(true);
+                            pref.setName(pref4.getName());
+                            pref.setYear(pref4.getYear());
+                            pref.setMonth(pref4.getMonth());
+                            pref.setDay(pref4.getDay());
+                            pref.setHour(pref4.getHour());
+                            pref.setMin(pref4.getMin());
+                            pref.setOneLine(pref4.getOneLine());
+                            pref.setOneLine2(pref4.getOneLine2());
+                            pref.setSex(pref4.getSex());
+                            pref.setSolunar(pref4.getSolunar());
+                            pref4.setName(name);
+                            pref4.setYear(year);
+                            pref4.setMonth(month);
+                            pref4.setDay(day);
+                            pref4.setHour(hour);
+                            pref4.setMin(min);
+                            pref4.setOneLine(oneLine);
+                            pref4.setOneLine2(onLine2);
+                            pref4.setSex(sex);
+                            pref4.setSolunar(solunar);
+//                    finish();
+//                    startActivity(getIntent());
+                            drawer.closeDrawers();
 //                    setScore();
-                    Toast.makeText(MainActivity.this, "기본 사용자가 변경되었습니다.", Toast.LENGTH_SHORT).show();
+                            set_rb();
+
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    startActivity(getIntent().setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                                    finish();
+
+
+                                }
+                            },  250);
+                            Toast.makeText(MainActivity.this, "기본 사용자가 변경되었습니다.", Toast.LENGTH_SHORT).show();
+
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setCancelable(false);
+
+                    final AlertDialog dialog = builder.create();
+                    dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                        @Override
+                        public void onShow(DialogInterface arg0) {
+                            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#14A2F6"));
+                            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#A2A2A2"));
+                        }
+                    });
+                    dialog.show();
+
+
                 }
             });
 
@@ -558,7 +785,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             TextView txtUser5 = header.findViewById(R.id.txtUser5);
             TextView txtBirth5 = header.findViewById(R.id.txtBirth5);
             TextView txtSolar5 = header.findViewById(R.id.txtSolar5);
-//            TextView txtModifyButton5 = header.findViewById(R.id.txtModifyButton5);
+
+            TextView txtUser5_1 = findViewById(R.id.txtUser5);
+            TextView txtBirth5_1 = findViewById(R.id.txtBirth5);
+            TextView txtSolar5_1 = findViewById(R.id.txtSolar5);
+
+
+            LinearLayout modifyButton5 = findViewById(R.id.modifyButton5);
+            modifyButton5.setVisibility(View.VISIBLE);
 
             txtUser5.setText(pref5.getName());
             txtBirth5.setText(pref5.getOneLine().substring(0, 12));
@@ -568,49 +802,105 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 txtSolar5.setText("(음력)");
             }
 
-//            txtModifyButton5.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    ModiFriendsFragment tfo = new ModiFriendsFragment(activity);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putInt("id", 5);
-//                    tfo.setArguments(bundle);
-//                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.left_in, R.anim.right_out).add(R.id.containerMain, tfo, "ModiFriendsFragment").addToBackStack(null).commit();
-//                    drawer.closeDrawers();
-//                }
-//            });
+            txtUser5_1.setText(pref5.getName());
+            txtBirth5_1.setText(pref5.getOneLine().substring(0, 12));
+            if (pref5.getSolunar().equals("solar")) {
+                txtSolar5_1.setText("(양력)");
+            } else {
+                txtSolar5_1.setText("(음력)");
+            }
+
+            modifyButton5.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ModiFriendsFragment tfo = new ModiFriendsFragment(activity);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("id", 5);
+                    tfo.setArguments(bundle);
+                    getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.left_in, R.anim.right_out).add(R.id.containerMain, tfo, "ModiFriendsFragment").addToBackStack(null).commit();
+                    drawer.closeDrawers();
+                    close_ModiFrame();
+                }
+            });
+
+
 
             containerModi5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    rb_user5.setChecked(true);
 
-                    pref.setName(pref5.getName());
-                    pref.setYear(pref5.getYear());
-                    pref.setMonth(pref5.getMonth());
-                    pref.setDay(pref5.getDay());
-                    pref.setHour(pref5.getHour());
-                    pref.setMin(pref5.getMin());
-                    pref.setOneLine(pref5.getOneLine());
-                    pref.setOneLine2(pref5.getOneLine2());
-                    pref.setSex(pref5.getSex());
-                    pref.setSolunar(pref5.getSolunar());
-                    pref5.setName(name);
-                    pref5.setYear(year);
-                    pref5.setMonth(month);
-                    pref5.setDay(day);
-                    pref5.setHour(hour);
-                    pref5.setMin(min);
-                    pref5.setOneLine(oneLine);
-                    pref5.setOneLine2(onLine2);
-                    pref5.setSex(sex);
-                    pref5.setSolunar(solunar);
-                    drawer.closeDrawers();
+
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("기본사용자 변경");
+                    builder.setMessage("기본 사용자를 \'"+pref5.getName()+"\'님으로 변경 하시겠습니까?");
+                    builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            rb_user5.setChecked(true);
+
+                            pref.setName(pref5.getName());
+                            pref.setYear(pref5.getYear());
+                            pref.setMonth(pref5.getMonth());
+                            pref.setDay(pref5.getDay());
+                            pref.setHour(pref5.getHour());
+                            pref.setMin(pref5.getMin());
+                            pref.setOneLine(pref5.getOneLine());
+                            pref.setOneLine2(pref5.getOneLine2());
+                            pref.setSex(pref5.getSex());
+                            pref.setSolunar(pref5.getSolunar());
+                            pref5.setName(name);
+                            pref5.setYear(year);
+                            pref5.setMonth(month);
+                            pref5.setDay(day);
+                            pref5.setHour(hour);
+                            pref5.setMin(min);
+                            pref5.setOneLine(oneLine);
+                            pref5.setOneLine2(onLine2);
+                            pref5.setSex(sex);
+                            pref5.setSolunar(solunar);
+
+                            drawer.closeDrawers();
 //                    setScore();
+                            set_rb();
 
-                    finish();
-                    startActivity(getIntent());
-                    Toast.makeText(MainActivity.this, "기본 사용자가 변경되었습니다.", Toast.LENGTH_SHORT).show();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    startActivity(getIntent().setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
+                                    finish();
+
+
+                                }
+                            },  250);
+
+
+//                    finish();
+//                    startActivity(getIntent());
+                            Toast.makeText(MainActivity.this, "기본 사용자가 변경되었습니다.", Toast.LENGTH_SHORT).show();
+
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setCancelable(false);
+
+                    final AlertDialog dialog = builder.create();
+                    dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                        @Override
+                        public void onShow(DialogInterface arg0) {
+                            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#14A2F6"));
+                            dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#A2A2A2"));
+                        }
+                    });
+                    dialog.show();
+
                 }
             });
 
@@ -715,6 +1005,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         });
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(0,0);
+    }
+
+    public void set_rb(){
+        rb_user1.setChecked(true);
+        rb_user2.setChecked(false);
+        rb_user3.setChecked(false);
+        rb_user4.setChecked(false);
+        rb_user5.setChecked(false);
+
+    }
+
+
+
     public void txtModify(View v) {
         //프로필수정
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -748,11 +1055,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         friend_add_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setCustomAnimations(R.anim.left_in, R.anim.right_out).add(R.id.containerMain, new AddFriendsFragment(MainActivity.this), "AddFriendsFragment").addToBackStack(null).commit();
-                drawer.closeDrawers();
-                close_ModiFrame();
+
+                if( pref2.getName()!=null  && pref3.getName()!=null  && pref4.getName()!=null  && pref5.getName()!=null) {
+                    Toast.makeText(getApplicationContext(), "더이상 추가할 수 없습니다.", Toast.LENGTH_SHORT).show();
+                    mProgressDialog.dismiss();
+                }else {
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setCustomAnimations(R.anim.left_in, R.anim.right_out).add(R.id.containerMain, new AddFriendsFragment(MainActivity.this), "AddFriendsFragment").addToBackStack(null).commit();
+                    drawer.closeDrawers();
+                    close_ModiFrame();
+
+                }
+
 
 
             }

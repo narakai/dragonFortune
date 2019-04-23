@@ -27,6 +27,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
 
 
+
         <activity android:name=".activity.PopActivity"
             android:theme="@style/Transparent"
 

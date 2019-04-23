@@ -25,10 +25,11 @@
 
 
     <LinearLayout
+        android:id="@+id/title_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="53dp"
+
         android:orientation="horizontal">
 
         <believe.cht.fadeintextview.TextView
@@ -40,6 +41,7 @@
             android:textColor="#000"
             android:textSize="27dp"
             app:letterDuration="111"
+
             />
 
     </LinearLayout>
@@ -214,13 +216,19 @@
                     android:focusable="false" />
             </LinearLayout>
 
-            <Button
+            <TextView
                 android:layout_weight="1"
                 android:id="@+id/nextButton"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="right"
-                android:background="@drawable/arrow"
+                android:text="완료"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:fontFamily="@font/notosansregu"
+                android:includeFontPadding="false"
+                android:textSize="18dp"
+                android:background="#BDBDBD"
                 android:onClick="nextTab"
                 />
 

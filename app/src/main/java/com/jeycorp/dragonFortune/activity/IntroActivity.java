@@ -79,33 +79,9 @@ public class IntroActivity extends AppCompatActivity {
             }
             @Override
             public void onAnimationEnd(Animation animation) {
+                mProgressDialog.show();
                 getIntroUrl();
 
-//                PermissionListener permissionlistener = new PermissionListener() {
-////                    @Override
-////                    public void onPermissionGranted() {
-////
-//////
-////                        getIntroUrl();
-////
-////
-////                    }
-////
-////                    @Override
-////                    public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-////
-//////
-////                        getIntroUrl();
-////
-////                    }
-////                };
-////
-////                TedPermission.with(getApplicationContext())
-////                        .setPermissionListener(permissionlistener)
-////                        .setRationaleMessage("운세 공유하기를 위해 스토리지 권한이 필요합니다.")
-//////                        .setDeniedMessage("거부됨")
-////                        .setPermissions(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-////                        .check();
             }
 
 
@@ -126,33 +102,18 @@ public class IntroActivity extends AppCompatActivity {
 //        finish();
 
         if (pref.getName().equals("")) {
-            Log.e("널일건데?2", "머냐2?");
             Intent intent = new Intent(this, RegisterActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
-
-
-            mProgressDialog.show();
-
-
-
-
-//            mProgressDialog = ProgressDialog.show(IntroActivity.this,"",
-//                    "잠시만 기다려 주세요.",true);
-
+//            mProgressDialog.show();
             finish();
         } else {
-            Log.e("널일건데?", "머냐?" + pref.getName());
             Intent intent2 = new Intent(this, MainActivity.class);
             intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent2);
-
-            mProgressDialog.show();
-
-
-//            mProgressDialog = ProgressDialog.show(IntroActivity.this,"",
-//                    "잠시만 기다려 주세요.",true);
+//            mProgressDialog.show();
             finish();
+            Log.e("뭐지?","?");
         }
 
     }
@@ -210,8 +171,7 @@ public class IntroActivity extends AppCompatActivity {
 
 
                                      mProgressDialog.show();
-//                                     mProgressDialog = ProgressDialog.show(IntroActivity.this,"",
-//                                             "잠시만 기다려 주세요.",true);
+
                                      initPage();
                                  }
                              })

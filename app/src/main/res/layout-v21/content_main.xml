@@ -73,7 +73,7 @@
                                     android:layout_marginLeft="17dp"
                                     android:fontFamily="@font/notosanslight"
                                     android:includeFontPadding="false"
-                                    android:text="현명규"
+                                    android:text=""
                                     android:textColor="#000000"
                                     android:textSize="24dp"
                                     android:textStyle="bold" />

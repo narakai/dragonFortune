@@ -164,7 +164,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="visible"
+                android:visibility="gone"
                 android:id="@+id/containerFriend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -190,6 +190,7 @@
                         android:orientation="vertical"
                         >
                         <LinearLayout
+                            android:visibility="gone"
                             android:id="@+id/containerModi1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -260,6 +261,7 @@
 
 
                         <LinearLayout
+                            android:visibility="gone"
                             android:id="@+id/containerModi2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -325,6 +327,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:visibility="gone"
                             android:layout_marginBottom="10dp"
                             android:id="@+id/containerModi3"
                             android:layout_width="wrap_content"
@@ -390,6 +393,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:visibility="gone"
                             android:layout_marginBottom="10dp"
                             android:id="@+id/containerModi4"
                             android:layout_width="wrap_content"
@@ -454,6 +458,7 @@
 
                         </LinearLayout>
                    <LinearLayout
+                       android:visibility="gone"
                        android:id="@+id/containerModi5"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"

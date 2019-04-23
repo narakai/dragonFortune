@@ -5,20 +5,24 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
@@ -26,6 +30,7 @@ import com.jeycorp.dragonFortune.R;
 import com.jeycorp.dragonFortune.define.UrlDefine;
 import com.jeycorp.dragonFortune.param.PutScoreParam;
 import com.jeycorp.dragonFortune.result.GetTodayFortuneTellingResult;
+import com.jeycorp.dragonFortune.util.KeyboardUtils;
 import com.jeycorp.dragonFortune.util.PreferenceManager;
 import com.jeycorp.dragonFortune.util.PreferenceManager2;
 import com.jeycorp.dragonFortune.util.PreferenceManager3;
@@ -34,7 +39,9 @@ import com.jeycorp.dragonFortune.util.PreferenceManager5;
 import com.jeycorp.dragonFortune.util.PreferenceManager6;
 import com.jeycorp.dragonFortune.volley.VolleyJsonHelper;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -58,6 +65,7 @@ public class CompatibilityActivity extends BaseActivity{
     boolean isFocus = true;
     private String isInput = "";
     private ProgressDialog mProgressDialog;
+    boolean isPass =true;
 
 
     CharSequence[] oItems =
@@ -83,6 +91,9 @@ public class CompatibilityActivity extends BaseActivity{
         pref4 = new PreferenceManager4(CompatibilityActivity.this);
         pref5 = new PreferenceManager5(CompatibilityActivity.this);
         pref6 = new PreferenceManager6(CompatibilityActivity.this);
+        mProgressDialog = new ProgressDialog(CompatibilityActivity.this, R.style.MyAlertDialogStyle);
+        mProgressDialog.setMessage("잠시만 기다려주세요");
+        mProgressDialog.setCancelable(false);
 
 
         Button backButton = findViewById(R.id.backButton);
@@ -98,9 +109,9 @@ public class CompatibilityActivity extends BaseActivity{
 
         //생년월일
         myCalendar = Calendar.getInstance();
-        txtBirthday = (EditText) findViewById(R.id.et_birthday);
-        txtBirthTime = (EditText) findViewById(R.id.et_birthTime);
-        txtUserName = (EditText) findViewById(R.id.et_txtUserName);
+        txtBirthday = (EditText) findViewById(R.id.birthday);
+        txtBirthTime = (EditText) findViewById(R.id.birthTime);
+        txtUserName = (EditText) findViewById(R.id.txtUserName);
         radioGroup = findViewById(R.id.gender);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -110,6 +121,7 @@ public class CompatibilityActivity extends BaseActivity{
 
             }
         });
+
 
         txtUserName.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -122,6 +134,24 @@ public class CompatibilityActivity extends BaseActivity{
 
 
                 return false;
+            }
+        });
+
+        KeyboardUtils.addKeyboardToggleListener(this, new KeyboardUtils.SoftKeyboardToggleListener()
+        {
+            @Override
+            public void onToggleSoftKeyboard(boolean isVisible)
+            {
+                Log.d("keyboard", "keyboard visible: "+isVisible);
+                TextView txt_title = findViewById(R.id.txt_title);
+                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) txt_title.getLayoutParams();
+                if(isVisible==true){
+                    params.topMargin = 30;
+
+                }else {
+                    params.topMargin = -70;
+
+                }
             }
         });
 
@@ -342,22 +372,186 @@ public class CompatibilityActivity extends BaseActivity{
         txtBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-//                new DatePickerDialog(CompatibilityActivity.this, R.style.DialogTheme, date, myCalendar
-//                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-//                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(CompatibilityActivity.this, R.style.DialogTheme, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH));
+                final AlertDialog.Builder builder = new AlertDialog.Builder(CompatibilityActivity.this);
+                LayoutInflater inflater = getLayoutInflater();
+                final View dialogView = inflater.inflate(R.layout.dialog_addmember, null);
 
-                datePickerDialog.getDatePicker().setMaxDate(myCalendar.getTimeInMillis());
-                datePickerDialog.show();
+                final TextView txt_year = dialogView.findViewById(R.id.txt_year);
+                final TextView txt_month = dialogView.findViewById(R.id.txt_month);
+                final TextView txt_day = dialogView.findViewById(R.id.txt_day);
 
+                builder.setView(dialogView);
+                txt_year.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        Log.e("와쳐", "" + txt_year.getText().toString().length());
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        Log.e("와쳐", "" + txt_year.getText().toString().length());
+                        if (txt_year.getText().toString().length() >= 4) {
+                            txt_year.clearFocus();
+                            txt_month.requestFocus();
+                        }
+                    }
+                });
+
+                txt_month.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        ArrayList<String> month = new ArrayList<>();
+
+                        month.add("2");
+                        month.add("3");
+                        month.add("4");
+                        month.add("5");
+                        month.add("6");
+                        month.add("7");
+                        month.add("8");
+                        month.add("9");
+                        if (month.contains(txt_month.getText().toString())) {
+                            txt_month.setText("0" + txt_month.getText().toString());
+                            txt_month.clearFocus();
+                            txt_day.requestFocus();
+                        }
+
+
+                        if (txt_month.getText().toString().length() >= 2) {
+                            txt_month.clearFocus();
+                            txt_day.requestFocus();
+                        }
+                    }
+                });
+
+                txt_day.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                        ArrayList<String> day = new ArrayList<>();
+
+
+                        day.add("4");
+                        day.add("5");
+                        day.add("6");
+                        day.add("7");
+                        day.add("8");
+                        day.add("9");
+                        if (day.contains(txt_day.getText().toString())) {
+                            txt_day.setText("0" + txt_day.getText().toString());
+
+                        }
+
+                        if (txt_day.getText().toString().length() >= 2) {
+
+                            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(txt_day.getWindowToken(), 0);
+                        }
+                    }
+                });
+                TextView button_yes = dialogView.findViewById(R.id.button_yes);
+                TextView button_no = dialogView.findViewById(R.id.button_no);
+                final AlertDialog dialog = builder.create();
+                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface arg0) {
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#14A2F6"));
+                        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#A2A2A2"));
+                    }
+                });
+
+
+                button_yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        RadioGroup rg = dialogView.findViewById(R.id.solunar_group);
+                        RadioButton rb = dialogView.findViewById(rg.getCheckedRadioButtonId());
+                        String year = txt_year.getText().toString();
+                        String month = txt_month.getText().toString();
+                        String day = txt_day.getText().toString();
+
+
+                        if (year.length() != 4) {
+
+                            Toast.makeText(getApplicationContext(), "연도를 네자리로 입력해 주세요.", Toast.LENGTH_SHORT).show();
+
+                        } else {
+
+
+                            if (rb == null) {
+                                Toast.makeText(getApplicationContext(), "양력 혹은 음력을 선택해주세요.", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                if (month.length() < 2) {
+                                    month = "0" + month;
+                                }
+                                if (day.length() < 2) {
+                                    day = "0" + day;
+                                }
+
+                                if (validationDate(year + "-" + month + "-" + day) == true) {
+                                    txtBirthday.setText(year + ". " + month + ". " + day + " " + rb.getText().toString());
+                                    Log.e("here", "on");
+                                    dialog.dismiss();
+
+
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "유효한 날짜를 입력해 주세요.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+
+                    }
+                });
+
+
+                builder.setCancelable(false);
+
+
+                button_no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+
+                    }
+                });
+
+                dialog.show();
 
 
             }
         });
+
+
 
 
         //태어난시
@@ -384,6 +578,20 @@ public class CompatibilityActivity extends BaseActivity{
 
         textIN();
         nextTab();
+
+    }
+    public boolean validationDate(String checkDate) {
+
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+            dateFormat.setLenient(false);
+            dateFormat.parse(checkDate);
+            return true;
+
+        } catch (ParseException e) {
+            return false;
+        }
 
     }
 
@@ -452,14 +660,14 @@ public class CompatibilityActivity extends BaseActivity{
         String name = txtUserName.getText().toString();
         String birth_date = txtBirthday.getText().toString();
         String birth_time = txtBirthTime.getText().toString();
-        Button nextButton = findViewById(R.id.nextButton);
+        TextView nextButton = findViewById(R.id.nextButton);
         boolean inputCheck;
 
         if (name.length() > 1 && birth_date.length() > 1 && birth_time.length() > 1) {
-            nextButton.setBackgroundResource(R.drawable.arrow_blue);
+            nextButton.setBackgroundColor(Color.parseColor("#14A2F6"));
             inputCheck = true;
         } else {
-            nextButton.setBackgroundResource(R.drawable.arrow);
+            nextButton.setBackgroundColor(Color.parseColor("#BDBDBD"));
             inputCheck = false;
         }
     }
@@ -485,6 +693,7 @@ public class CompatibilityActivity extends BaseActivity{
 
 
     public void setScore() {
+        mProgressDialog.show();
         PutScoreParam putScoreParam = new PutScoreParam();
 
         putScoreParam.setName(pref6.getName());
@@ -525,13 +734,18 @@ public class CompatibilityActivity extends BaseActivity{
 
             if(getTodayFortuneTellingResult.getResultCode()==1){
                 Toast.makeText(getApplicationContext(), getTodayFortuneTellingResult.getResultMessage(), Toast.LENGTH_SHORT).show();
+                isPass=false;
+                mProgressDialog.dismiss();
 
             }else {
-                Intent intent = new Intent(CompatibilityActivity.this, ResultActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("pref6","pref6");
-                startActivity(intent);
-                finish();
+//                Intent intent = new Intent(CompatibilityActivity.this, ResultActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                intent.putExtra("pref6","pref6");
+//                startActivity(intent);
+//                finish();
+                isPass=true;
+                mProgressDialog.dismiss();
+                setFriends();
 
             }
 
@@ -552,27 +766,41 @@ public class CompatibilityActivity extends BaseActivity{
         }
     };
 
+    public void showResultActivity(){
+        Intent intent = new Intent(CompatibilityActivity.this, ResultActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("pref6","pref6");
+                startActivity(intent);
+                finish();
+    }
+
+
+
+
+
+
 
     public void nextTab() {
 
-
-        Button nextButton = findViewById(R.id.nextButton);
+        TextView nextButton = findViewById(R.id.nextButton);
         final GetTodayFortuneTellingResult getTodayFortuneTellingResult = new GetTodayFortuneTellingResult();
         if(getTodayFortuneTellingResult.getResultCode()==1){
-            Log.e("추가1 "  ,""+getTodayFortuneTellingResult.getResultCode());
+            mProgressDialog.dismiss();
             Toast.makeText(CompatibilityActivity.this, getTodayFortuneTellingResult.getResultMessage(), Toast.LENGTH_SHORT).show();
         }else {
-            Log.e("추가2"  ,""+getTodayFortuneTellingResult.getResultCode());
             nextButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    mProgressDialog.show();
+                    mProgressDialog.setCancelable(false);
                     final RadioButton rd = findViewById(radioGroup.getCheckedRadioButtonId());
-
                     if (txtUserName.length() == 0 || txtBirthday.length() == 0 || txtBirthTime.length() == 0 || radioGroup.getCheckedRadioButtonId() == -1) {
                         Toast.makeText(CompatibilityActivity.this, "모든 사항을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                        mProgressDialog.dismiss();
                     } else {
                         if (txtUserName.length() < 2) {
                             Toast.makeText(CompatibilityActivity.this, "이름을 두 글자 이상 입력해주세요.", Toast.LENGTH_SHORT).show();
+                            mProgressDialog.dismiss();
                         } else {
                             pref6.setName(txtUserName.getText().toString());
                             pref6.setSex(rd.getText().toString());
@@ -634,272 +862,14 @@ public class CompatibilityActivity extends BaseActivity{
                                 if(!txtUserName.getText().toString().equals(pref2.getName())  && !txtUserName.getText().toString().equals(pref3.getName())
                                         && !txtUserName.getText().toString().equals(pref4.getName())
                                         && !txtUserName.getText().toString().equals(pref5.getName())){
-
-
+                                    mProgressDialog.dismiss();
                                     new AlertDialog.Builder(CompatibilityActivity.this)
                                             .setTitle("사용자를 추가 하겠습니까?")
                                             .setMessage("추가된 사용자는 메뉴에서 수정 및 삭제가 가능합니다.")
-                                            .setPositiveButton("추가3", new DialogInterface.OnClickListener()
-                                            {
+                                            .setPositiveButton("추가", new DialogInterface.OnClickListener(){
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
-//                                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/")));
-                                                    if (pref2.getName() == null) {
-                                                        //2널
-                                                        pref2.setName(txtUserName.getText().toString());
-                                                        pref2.setSex(rd.getText().toString());
-                                                        pref2.setYear(txtBirthday.getText().toString().substring(0, 4));
-                                                        pref2.setMonth(txtBirthday.getText().toString().substring(6, 8));
-                                                        pref2.setDay(txtBirthday.getText().toString().substring(10, 12));
-                                                        if (txtBirthday.getText().toString().substring(13, 15).equals("양력")) {
-                                                            pref2.setSolunar("solar");
-                                                        } else {
-                                                            pref2.setSolunar("lunar");
-                                                        }
-                                                        String time = txtBirthTime.getText().toString();
-                                                        switch (time) {
-                                                            case "모름":
-                                                                pref2.setHour("00");
-                                                                break;
-                                                            case "子 (23:30) ~ (01:29)":
-                                                                pref2.setHour("01");
-                                                                break;
-                                                            case "丑 (01:30) ~ (03:29)":
-                                                                pref2.setHour("02");
-                                                                break;
-                                                            case "寅 (03:30) ~ (05:29)":
-                                                                pref2.setHour("04");
-                                                                break;
-                                                            case "卯 (05:30) ~ (07:29)":
-                                                                pref2.setHour("06");
-                                                                break;
-                                                            case "辰 (07:30) ~ (09:29)":
-                                                                pref2.setHour("08");
-                                                                break;
-                                                            case "巳 (09:30) ~ (11:29)":
-                                                                pref2.setHour("10");
-                                                                break;
-                                                            case "午 (11:30) ~ (13:29)":
-                                                                pref2.setHour("12");
-                                                                break;
-                                                            case "未 (13:30) ~ (15:29)":
-                                                                pref2.setHour("14");
-                                                                break;
-                                                            case "申 (15:30) ~ (17:29)":
-                                                                pref2.setHour("16");
-                                                                break;
-                                                            case "酉 (17:30) ~ (19:29)":
-                                                                pref2.setHour("18");
-                                                                break;
-                                                            case "戌 (19:30) ~ (21:29)":
-                                                                pref2.setHour("20");
-                                                                break;
-                                                            case "亥 (21:30) ~ (23:29)":
-                                                                pref2.setHour("22");
-                                                                break;
-                                                        }
-                                                        pref2.setMin("00");
-                                                        pref2.setOneLine(txtBirthday.getText().toString());
-                                                        pref2.setOneLine2(txtBirthTime.getText().toString());
-                                                        setScore();
-
-                                                        Toast.makeText(CompatibilityActivity.this, "추가되었습니다.", Toast.LENGTH_SHORT).show();
-
-                                                    } else {
-                                                        if (pref3.getName() == null) {
-                                                            //3널
-                                                            pref3.setName(txtUserName.getText().toString());
-                                                            pref3.setSex(rd.getText().toString());
-                                                            pref3.setYear(txtBirthday.getText().toString().substring(0, 4));
-                                                            pref3.setMonth(txtBirthday.getText().toString().substring(6, 8));
-                                                            pref3.setDay(txtBirthday.getText().toString().substring(10, 12));
-                                                            if (txtBirthday.getText().toString().substring(13, 15).equals("양력")) {
-                                                                pref3.setSolunar("solar");
-                                                            } else {
-                                                                pref3.setSolunar("lunar");
-                                                            }
-                                                            String time = txtBirthTime.getText().toString();
-                                                            switch (time) {
-                                                                case "모름":
-                                                                    pref3.setHour("00");
-                                                                    break;
-                                                                case "子 (23:30) ~ (01:29)":
-                                                                    pref3.setHour("01");
-                                                                    break;
-                                                                case "丑 (01:30) ~ (03:29)":
-                                                                    pref3.setHour("02");
-                                                                    break;
-                                                                case "寅 (03:30) ~ (05:29)":
-                                                                    pref3.setHour("04");
-                                                                    break;
-                                                                case "卯 (05:30) ~ (07:29)":
-                                                                    pref3.setHour("06");
-                                                                    break;
-                                                                case "辰 (07:30) ~ (09:29)":
-                                                                    pref3.setHour("08");
-                                                                    break;
-                                                                case "巳 (09:30) ~ (11:29)":
-                                                                    pref3.setHour("10");
-                                                                    break;
-                                                                case "午 (11:30) ~ (13:29)":
-                                                                    pref3.setHour("12");
-                                                                    break;
-                                                                case "未 (13:30) ~ (15:29)":
-                                                                    pref3.setHour("14");
-                                                                    break;
-                                                                case "申 (15:30) ~ (17:29)":
-                                                                    pref3.setHour("16");
-                                                                    break;
-                                                                case "酉 (17:30) ~ (19:29)":
-                                                                    pref3.setHour("18");
-                                                                    break;
-                                                                case "戌 (19:30) ~ (21:29)":
-                                                                    pref3.setHour("20");
-                                                                    break;
-                                                                case "亥 (21:30) ~ (23:29)":
-                                                                    pref3.setHour("22");
-                                                                    break;
-                                                            }
-                                                            pref3.setMin("00");
-                                                            pref3.setOneLine(txtBirthday.getText().toString());
-                                                            pref3.setOneLine2(txtBirthTime.getText().toString());
-                                                            setScore();
-
-                                                            Toast.makeText(CompatibilityActivity.this, "추가되었습니다.", Toast.LENGTH_SHORT).show();
-
-
-                                                        } else {
-                                                            if (pref4.getName() == null) {
-                                                                //4널
-                                                                pref4.setName(txtUserName.getText().toString());
-                                                                pref4.setSex(rd.getText().toString());
-                                                                pref4.setYear(txtBirthday.getText().toString().substring(0, 4));
-                                                                pref4.setMonth(txtBirthday.getText().toString().substring(6, 8));
-                                                                pref4.setDay(txtBirthday.getText().toString().substring(10, 12));
-                                                                if (txtBirthday.getText().toString().substring(13, 15).equals("양력")) {
-                                                                    pref4.setSolunar("solar");
-                                                                } else {
-                                                                    pref4.setSolunar("lunar");
-                                                                }
-                                                                String time = txtBirthTime.getText().toString();
-                                                                switch (time) {
-                                                                    case "모름":
-                                                                        pref4.setHour("00");
-                                                                        break;
-                                                                    case "子 (23:30) ~ (01:29)":
-                                                                        pref4.setHour("01");
-                                                                        break;
-                                                                    case "丑 (01:30) ~ (03:29)":
-                                                                        pref4.setHour("02");
-                                                                        break;
-                                                                    case "寅 (03:30) ~ (05:29)":
-                                                                        pref4.setHour("04");
-                                                                        break;
-                                                                    case "卯 (05:30) ~ (07:29)":
-                                                                        pref4.setHour("06");
-                                                                        break;
-                                                                    case "辰 (07:30) ~ (09:29)":
-                                                                        pref4.setHour("08");
-                                                                        break;
-                                                                    case "巳 (09:30) ~ (11:29)":
-                                                                        pref4.setHour("10");
-                                                                        break;
-                                                                    case "午 (11:30) ~ (13:29)":
-                                                                        pref4.setHour("12");
-                                                                        break;
-                                                                    case "未 (13:30) ~ (15:29)":
-                                                                        pref4.setHour("14");
-                                                                        break;
-                                                                    case "申 (15:30) ~ (17:29)":
-                                                                        pref4.setHour("16");
-                                                                        break;
-                                                                    case "酉 (17:30) ~ (19:29)":
-                                                                        pref4.setHour("18");
-                                                                        break;
-                                                                    case "戌 (19:30) ~ (21:29)":
-                                                                        pref4.setHour("20");
-                                                                        break;
-                                                                    case "亥 (21:30) ~ (23:29)":
-                                                                        pref4.setHour("22");
-                                                                        break;
-                                                                }
-                                                                pref4.setMin("00");
-                                                                pref4.setOneLine(txtBirthday.getText().toString());
-                                                                pref4.setOneLine2(txtBirthTime.getText().toString());
-                                                                setScore();
-
-                                                                Toast.makeText(CompatibilityActivity.this, "추가되었습니다.", Toast.LENGTH_SHORT).show();
-
-
-                                                            } else {
-                                                                if (pref5.getName() == null) {
-                                                                    //5널
-                                                                    pref5.setName(txtUserName.getText().toString());
-                                                                    pref5.setSex(rd.getText().toString());
-                                                                    pref5.setYear(txtBirthday.getText().toString().substring(0, 4));
-                                                                    pref5.setMonth(txtBirthday.getText().toString().substring(6, 8));
-                                                                    pref5.setDay(txtBirthday.getText().toString().substring(10, 12));
-                                                                    if (txtBirthday.getText().toString().substring(13, 15).equals("양력")) {
-                                                                        pref5.setSolunar("solar");
-                                                                    } else {
-                                                                        pref5.setSolunar("lunar");
-                                                                    }
-                                                                    String time = txtBirthTime.getText().toString();
-                                                                    switch (time) {
-                                                                        case "모름":
-                                                                            pref5.setHour("00");
-                                                                            break;
-                                                                        case "子 (23:30) ~ (01:29)":
-                                                                            pref5.setHour("01");
-                                                                            break;
-                                                                        case "丑 (01:30) ~ (03:29)":
-                                                                            pref5.setHour("02");
-                                                                            break;
-                                                                        case "寅 (03:30) ~ (05:29)":
-                                                                            pref5.setHour("04");
-                                                                            break;
-                                                                        case "卯 (05:30) ~ (07:29)":
-                                                                            pref5.setHour("06");
-                                                                            break;
-                                                                        case "辰 (07:30) ~ (09:29)":
-                                                                            pref5.setHour("08");
-                                                                            break;
-                                                                        case "巳 (09:30) ~ (11:29)":
-                                                                            pref5.setHour("10");
-                                                                            break;
-                                                                        case "午 (11:30) ~ (13:29)":
-                                                                            pref5.setHour("12");
-                                                                            break;
-                                                                        case "未 (13:30) ~ (15:29)":
-                                                                            pref5.setHour("14");
-                                                                            break;
-                                                                        case "申 (15:30) ~ (17:29)":
-                                                                            pref5.setHour("16");
-                                                                            break;
-                                                                        case "酉 (17:30) ~ (19:29)":
-                                                                            pref5.setHour("18");
-                                                                            break;
-                                                                        case "戌 (19:30) ~ (21:29)":
-                                                                            pref5.setHour("20");
-                                                                            break;
-                                                                        case "亥 (21:30) ~ (23:29)":
-                                                                            pref5.setHour("22");
-                                                                            break;
-                                                                    }
-                                                                    pref5.setMin("00");
-                                                                    pref5.setOneLine(txtBirthday.getText().toString());
-                                                                    pref5.setOneLine2(txtBirthTime.getText().toString());
-                                                                    setScore();
-
-                                                                    Toast.makeText(CompatibilityActivity.this, "추가되었습니다.", Toast.LENGTH_SHORT).show();
-
-
-                                                                }
-                                                            }
-
-                                                        }
-                                                    }
-
+                                                    setScore();
 
                                                 }
 
@@ -907,7 +877,7 @@ public class CompatibilityActivity extends BaseActivity{
                                             .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialog, int which) {
-                                                    setScore();
+                                                    showResultActivity();
 
 
                                                 }
@@ -916,7 +886,7 @@ public class CompatibilityActivity extends BaseActivity{
 
                                 }else {
 
-                                    setScore();
+                                    showResultActivity();
 
 
                                 }
@@ -932,7 +902,7 @@ public class CompatibilityActivity extends BaseActivity{
 
                             }else {
                                 Log.e("이게 널이 아니라고?", "" + pref2.getName());
-                                setScore();
+                                showResultActivity();;
 
 
                             }
@@ -959,6 +929,267 @@ public class CompatibilityActivity extends BaseActivity{
 
 
 
+    }
+
+    public void setFriends(){
+        final RadioButton rd = findViewById(radioGroup.getCheckedRadioButtonId());
+        if(isPass==true){
+            if (pref2.getName() == null) {
+                pref2.setName(txtUserName.getText().toString());
+                pref2.setSex(rd.getText().toString());
+                pref2.setYear(txtBirthday.getText().toString().substring(0, 4));
+                pref2.setMonth(txtBirthday.getText().toString().substring(6, 8));
+                pref2.setDay(txtBirthday.getText().toString().substring(10, 12));
+                if (txtBirthday.getText().toString().substring(13, 15).equals("양력")) {
+                    pref2.setSolunar("solar");
+                } else {
+                    pref2.setSolunar("lunar");
+                }
+                String time = txtBirthTime.getText().toString();
+                switch (time) {
+                    case "모름":
+                        pref2.setHour("00");
+                        break;
+                    case "子 (23:30) ~ (01:29)":
+                        pref2.setHour("01");
+                        break;
+                    case "丑 (01:30) ~ (03:29)":
+                        pref2.setHour("02");
+                        break;
+                    case "寅 (03:30) ~ (05:29)":
+                        pref2.setHour("04");
+                        break;
+                    case "卯 (05:30) ~ (07:29)":
+                        pref2.setHour("06");
+                        break;
+                    case "辰 (07:30) ~ (09:29)":
+                        pref2.setHour("08");
+                        break;
+                    case "巳 (09:30) ~ (11:29)":
+                        pref2.setHour("10");
+                        break;
+                    case "午 (11:30) ~ (13:29)":
+                        pref2.setHour("12");
+                        break;
+                    case "未 (13:30) ~ (15:29)":
+                        pref2.setHour("14");
+                        break;
+                    case "申 (15:30) ~ (17:29)":
+                        pref2.setHour("16");
+                        break;
+                    case "酉 (17:30) ~ (19:29)":
+                        pref2.setHour("18");
+                        break;
+                    case "戌 (19:30) ~ (21:29)":
+                        pref2.setHour("20");
+                        break;
+                    case "亥 (21:30) ~ (23:29)":
+                        pref2.setHour("22");
+                        break;
+                }
+                pref2.setMin("00");
+                pref2.setOneLine(txtBirthday.getText().toString());
+                pref2.setOneLine2(txtBirthTime.getText().toString());
+                showResultActivity();
+
+
+                Toast.makeText(CompatibilityActivity.this, "추가되었습니다.", Toast.LENGTH_SHORT).show();
+
+            } else {
+                if (pref3.getName() == null) {
+                    //3널
+                    pref3.setName(txtUserName.getText().toString());
+                    pref3.setSex(rd.getText().toString());
+                    pref3.setYear(txtBirthday.getText().toString().substring(0, 4));
+                    pref3.setMonth(txtBirthday.getText().toString().substring(6, 8));
+                    pref3.setDay(txtBirthday.getText().toString().substring(10, 12));
+                    if (txtBirthday.getText().toString().substring(13, 15).equals("양력")) {
+                        pref3.setSolunar("solar");
+                    } else {
+                        pref3.setSolunar("lunar");
+                    }
+                    String time = txtBirthTime.getText().toString();
+                    switch (time) {
+                        case "모름":
+                            pref3.setHour("00");
+                            break;
+                        case "子 (23:30) ~ (01:29)":
+                            pref3.setHour("01");
+                            break;
+                        case "丑 (01:30) ~ (03:29)":
+                            pref3.setHour("02");
+                            break;
+                        case "寅 (03:30) ~ (05:29)":
+                            pref3.setHour("04");
+                            break;
+                        case "卯 (05:30) ~ (07:29)":
+                            pref3.setHour("06");
+                            break;
+                        case "辰 (07:30) ~ (09:29)":
+                            pref3.setHour("08");
+                            break;
+                        case "巳 (09:30) ~ (11:29)":
+                            pref3.setHour("10");
+                            break;
+                        case "午 (11:30) ~ (13:29)":
+                            pref3.setHour("12");
+                            break;
+                        case "未 (13:30) ~ (15:29)":
+                            pref3.setHour("14");
+                            break;
+                        case "申 (15:30) ~ (17:29)":
+                            pref3.setHour("16");
+                            break;
+                        case "酉 (17:30) ~ (19:29)":
+                            pref3.setHour("18");
+                            break;
+                        case "戌 (19:30) ~ (21:29)":
+                            pref3.setHour("20");
+                            break;
+                        case "亥 (21:30) ~ (23:29)":
+                            pref3.setHour("22");
+                            break;
+                    }
+                    pref3.setMin("00");
+                    pref3.setOneLine(txtBirthday.getText().toString());
+                    pref3.setOneLine2(txtBirthTime.getText().toString());
+                    showResultActivity();
+                    Toast.makeText(CompatibilityActivity.this, "추가되었습니다.", Toast.LENGTH_SHORT).show();
+
+
+                } else {
+                    if (pref4.getName() == null) {
+                        //4널
+                        pref4.setName(txtUserName.getText().toString());
+                        pref4.setSex(rd.getText().toString());
+                        pref4.setYear(txtBirthday.getText().toString().substring(0, 4));
+                        pref4.setMonth(txtBirthday.getText().toString().substring(6, 8));
+                        pref4.setDay(txtBirthday.getText().toString().substring(10, 12));
+                        if (txtBirthday.getText().toString().substring(13, 15).equals("양력")) {
+                            pref4.setSolunar("solar");
+                        } else {
+                            pref4.setSolunar("lunar");
+                        }
+                        String time = txtBirthTime.getText().toString();
+                        switch (time) {
+                            case "모름":
+                                pref4.setHour("00");
+                                break;
+                            case "子 (23:30) ~ (01:29)":
+                                pref4.setHour("01");
+                                break;
+                            case "丑 (01:30) ~ (03:29)":
+                                pref4.setHour("02");
+                                break;
+                            case "寅 (03:30) ~ (05:29)":
+                                pref4.setHour("04");
+                                break;
+                            case "卯 (05:30) ~ (07:29)":
+                                pref4.setHour("06");
+                                break;
+                            case "辰 (07:30) ~ (09:29)":
+                                pref4.setHour("08");
+                                break;
+                            case "巳 (09:30) ~ (11:29)":
+                                pref4.setHour("10");
+                                break;
+                            case "午 (11:30) ~ (13:29)":
+                                pref4.setHour("12");
+                                break;
+                            case "未 (13:30) ~ (15:29)":
+                                pref4.setHour("14");
+                                break;
+                            case "申 (15:30) ~ (17:29)":
+                                pref4.setHour("16");
+                                break;
+                            case "酉 (17:30) ~ (19:29)":
+                                pref4.setHour("18");
+                                break;
+                            case "戌 (19:30) ~ (21:29)":
+                                pref4.setHour("20");
+                                break;
+                            case "亥 (21:30) ~ (23:29)":
+                                pref4.setHour("22");
+                                break;
+                        }
+                        pref4.setMin("00");
+                        pref4.setOneLine(txtBirthday.getText().toString());
+                        pref4.setOneLine2(txtBirthTime.getText().toString());
+                        showResultActivity();
+
+                        Toast.makeText(CompatibilityActivity.this, "추가되었습니다.", Toast.LENGTH_SHORT).show();
+
+
+                    } else {
+                        if (pref5.getName() == null) {
+                            //5널
+                            pref5.setName(txtUserName.getText().toString());
+                            pref5.setSex(rd.getText().toString());
+                            pref5.setYear(txtBirthday.getText().toString().substring(0, 4));
+                            pref5.setMonth(txtBirthday.getText().toString().substring(6, 8));
+                            pref5.setDay(txtBirthday.getText().toString().substring(10, 12));
+                            if (txtBirthday.getText().toString().substring(13, 15).equals("양력")) {
+                                pref5.setSolunar("solar");
+                            } else {
+                                pref5.setSolunar("lunar");
+                            }
+                            String time = txtBirthTime.getText().toString();
+                            switch (time) {
+                                case "모름":
+                                    pref5.setHour("00");
+                                    break;
+                                case "子 (23:30) ~ (01:29)":
+                                    pref5.setHour("01");
+                                    break;
+                                case "丑 (01:30) ~ (03:29)":
+                                    pref5.setHour("02");
+                                    break;
+                                case "寅 (03:30) ~ (05:29)":
+                                    pref5.setHour("04");
+                                    break;
+                                case "卯 (05:30) ~ (07:29)":
+                                    pref5.setHour("06");
+                                    break;
+                                case "辰 (07:30) ~ (09:29)":
+                                    pref5.setHour("08");
+                                    break;
+                                case "巳 (09:30) ~ (11:29)":
+                                    pref5.setHour("10");
+                                    break;
+                                case "午 (11:30) ~ (13:29)":
+                                    pref5.setHour("12");
+                                    break;
+                                case "未 (13:30) ~ (15:29)":
+                                    pref5.setHour("14");
+                                    break;
+                                case "申 (15:30) ~ (17:29)":
+                                    pref5.setHour("16");
+                                    break;
+                                case "酉 (17:30) ~ (19:29)":
+                                    pref5.setHour("18");
+                                    break;
+                                case "戌 (19:30) ~ (21:29)":
+                                    pref5.setHour("20");
+                                    break;
+                                case "亥 (21:30) ~ (23:29)":
+                                    pref5.setHour("22");
+                                    break;
+                            }
+                            pref5.setMin("00");
+                            pref5.setOneLine(txtBirthday.getText().toString());
+                            pref5.setOneLine2(txtBirthTime.getText().toString());
+                            showResultActivity();
+
+                            Toast.makeText(CompatibilityActivity.this, "추가되었습니다.", Toast.LENGTH_SHORT).show();
+
+
+                        }
+                    }
+
+                }
+            }
+
+        }
     }
 
 }

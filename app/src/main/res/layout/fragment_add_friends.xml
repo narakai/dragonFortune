@@ -1,218 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ScrollView1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F7F7F7"
-    android:clickable="true"
-
-    >
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.MyModifyFragment"
-    android:orientation="vertical"
     android:background="#F7F7F7"
-    android:clickable="true"
-    >
-<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:layout_marginLeft="32dp"
-    android:layout_marginTop="30dp"
-    android:layout_marginBottom="8dp"
-    android:layout_marginRight="22dp"
-    >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:fontFamily="@font/notosanslight"
-        android:includeFontPadding="false"
-        android:text="가족 연인 추가"
-        android:textColor="#000"
-        android:textSize="18dp"
-        android:textStyle="bold" />
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-
-</LinearLayout>
-
-
-    <android.support.v7.widget.CardView
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:orientation="vertical">
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="23dp"
-
-        android:layout_marginRight="23dp"
-        android:background="#ffffff"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="5dp"
-
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="34dp"
-        >
-
-
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/txt_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/notosanslight"
+                android:includeFontPadding="false"
+                android:text="가족 연인 추가"
+                android:textColor="#000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
-            android:background="#fff"
-            android:gravity="center"
-            android:orientation="vertical">
-
-
-
-            <LinearLayout
-                android:layout_weight="1"
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="38dp"
-                android:layout_marginBottom="20dp"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="23dp"
 
-                <TextView
-                    style="@style/activity_input_my_info_text"
-                    android:text="성명" />
+                android:layout_marginRight="23dp"
+                android:background="#ffffff"
+                app:cardCornerRadius="3dp"
+                app:cardElevation="5dp"
 
-                <EditText
-                    android:id="@+id/txtUserName"
-                    style="@style/activity_input_my_info_input"
-                    android:ems="10"
-                    android:theme="@style/EditTheme"
-                    android:inputType="textPersonName"
-                    android:gravity="center_horizontal"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginBottom="34dp"
+                >
 
-
-
-                    />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp">
-
-                <TextView
-                    style="@style/activity_input_my_info_text"
-                    android:text="성별" />
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="28dp"
-                    android:layout_weight="1.9"
-                    android:background="@drawable/underline"
-                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    >
 
-                    <RadioGroup
-                        android:id="@+id/gender"
+
+                    <LinearLayout
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_marginTop="38dp"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/activity_input_my_info_text"
+                            android:text="성명" />
+
+                        <EditText
+                            android:id="@+id/txtUserName"
+                            style="@style/activity_input_my_info_input"
+                            android:ems="10"
+                            android:theme="@style/EditTheme"
+                            android:inputType="textPersonName"
+                            android:gravity="center_horizontal"
+
+
+
+
+
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="20dp">
+
+                        <TextView
+                            style="@style/activity_input_my_info_text"
+                            android:text="성별" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="28dp"
+                            android:layout_weight="1.9"
+                            android:background="@drawable/underline"
+                            android:orientation="vertical"
+
+                            >
+
+                            <RadioGroup
+                                android:id="@+id/gender"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+
+                                >
+
+                                <RadioButton
+                                    android:id="@+id/rb_male"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_weight="1"
+                                    android:buttonTint="#14A2F6"
+                                    android:fontFamily="@font/notosansregu"
+                                    android:includeFontPadding="false"
+                                    android:text="남" />
+
+                                <RadioButton
+                                    android:id="@+id/rb_female"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginEnd="20dp"
+                                    android:layout_weight="1"
+                                    android:buttonTint="#14A2F6"
+                                    android:fontFamily="@font/notosansregu"
+                                    android:includeFontPadding="false"
+                                    android:text="여" />
+                            </RadioGroup>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="20dp"
+
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/activity_input_my_info_text"
+                            android:text="생년월일" />
+
+                        <EditText
+                            android:id="@+id/birthday"
+                            style="@style/activity_input_my_info_input"
+                            android:ems="10"
+                            android:theme="@style/EditTheme"
+                            android:focusable="false"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="30dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/activity_input_my_info_text"
+                            android:text="태어난 시" />
+
+                        <EditText
+                            android:id="@+id/birthTime"
+                            style="@style/activity_input_my_info_input"
+                            android:focusableInTouchMode="true"
+                            android:ems="10"
+                            android:theme="@style/EditTheme"
+                            android:focusable="false" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:id="@+id/nextButton"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="right"
+                        android:text="완료"
                         android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
+                        android:textColor="#fff"
+                        android:fontFamily="@font/notosansregu"
+                        android:includeFontPadding="false"
+                        android:textSize="18dp"
+                        android:background="#BDBDBD"
 
-                        >
+                        />
 
-                        <RadioButton
-                            android:id="@+id/rb_male"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="20dp"
-                            android:layout_weight="1"
-                            android:buttonTint="#14A2F6"
-                            android:fontFamily="@font/notosansregu"
-                            android:includeFontPadding="false"
-                            android:text="남" />
 
-                        <RadioButton
-                            android:id="@+id/rb_female"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="20dp"
-                            android:layout_weight="1"
-                            android:buttonTint="#14A2F6"
-                            android:fontFamily="@font/notosansregu"
-                            android:includeFontPadding="false"
-                            android:text="여" />
-                    </RadioGroup>
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="20dp"
-
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/activity_input_my_info_text"
-                    android:text="생년월일" />
-
-                <EditText
-                    android:id="@+id/birthday"
-                    style="@style/activity_input_my_info_input"
-                    android:ems="10"
-                    android:theme="@style/EditTheme"
-                    android:focusable="false"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="30dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/activity_input_my_info_text"
-                    android:text="태어난 시" />
-
-                <EditText
-                    android:id="@+id/birthTime"
-                    style="@style/activity_input_my_info_input"
-                    android:focusableInTouchMode="true"
-                    android:ems="10"
-                    android:theme="@style/EditTheme"
-                    android:focusable="false" />
-            </LinearLayout>
-
-            <Button
-                android:layout_weight="1"
-                android:id="@+id/nextButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="right"
-                android:background="@drawable/arrow"
-
-                />
+            </android.support.v7.widget.CardView>
 
 
         </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+
+
+
+
+
+
+    </ScrollView>
+
 
 
 </LinearLayout>
-</ScrollView>

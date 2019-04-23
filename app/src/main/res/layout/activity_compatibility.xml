@@ -53,6 +53,7 @@
             >
 
             <TextView
+                android:id="@+id/txt_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
@@ -105,9 +106,7 @@
                             android:text="성명" />
 
                         <EditText
-
-
-                            android:id="@+id/et_txtUserName"
+                            android:id="@+id/txtUserName"
                             style="@style/activity_input_my_info_input"
                             android:ems="10"
                             android:theme="@style/EditTheme"
@@ -190,13 +189,11 @@
                             android:text="생년월일" />
 
                         <EditText
-                            android:id="@+id/et_birthday"
+                            android:id="@+id/birthday"
                             style="@style/activity_input_my_info_input"
                             android:ems="10"
                             android:theme="@style/EditTheme"
-                            android:focusable="false"
-                            android:imeOptions="actionNext"
-                            />
+                            android:focusable="false"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -211,7 +208,7 @@
                             android:text="태어난 시" />
 
                         <EditText
-                            android:id="@+id/et_birthTime"
+                            android:id="@+id/birthTime"
                             style="@style/activity_input_my_info_input"
                             android:focusableInTouchMode="true"
                             android:ems="10"
@@ -219,14 +216,20 @@
                             android:focusable="false" />
                     </LinearLayout>
 
-                    <Button
+                    <TextView
                         android:layout_weight="1"
                         android:id="@+id/nextButton"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="right"
-                        android:background="@drawable/arrow"
-
+                        android:text="완료"
+                        android:gravity="center"
+                        android:textColor="#fff"
+                        android:fontFamily="@font/notosansregu"
+                        android:includeFontPadding="false"
+                        android:textSize="18dp"
+                        android:background="#BDBDBD"
+                        android:onClick="nextTab"
                         />
 
 

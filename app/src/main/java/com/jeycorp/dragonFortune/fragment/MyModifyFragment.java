@@ -5,8 +5,11 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -37,10 +40,13 @@ import com.jeycorp.dragonFortune.activity.MainActivity;
 import com.jeycorp.dragonFortune.define.UrlDefine;
 import com.jeycorp.dragonFortune.param.PutScoreParam;
 import com.jeycorp.dragonFortune.result.GetTodayFortuneTellingResult;
+import com.jeycorp.dragonFortune.util.KeyboardUtils;
 import com.jeycorp.dragonFortune.util.PreferenceManager;
 import com.jeycorp.dragonFortune.volley.VolleyJsonHelper;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -57,6 +63,7 @@ public class MyModifyFragment extends Fragment {
     private PreferenceManager pref;
     View view;
     private MainActivity activity;
+    private ProgressDialog mProgressDialog;
 
     CharSequence[] oItems =
             {"모름", "子 (23:30) ~ (01:29)", "丑 (01:30) ~ (03:29)", "寅 (03:30) ~ (05:29)", "卯 (05:30) ~ (07:29)","辰 (07:30) ~ (09:29)",
@@ -88,6 +95,9 @@ public class MyModifyFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_my_modify, null);
         pref = new PreferenceManager(getContext());
 
+        mProgressDialog = new ProgressDialog(getContext(), R.style.MyAlertDialogStyle);
+        mProgressDialog.setMessage("잠시만 기다려주세요");
+
         Log.e("정보수정1",pref.getOneLine());
         Log.e("정보수정2",pref.getOneLine2());
 
@@ -113,6 +123,29 @@ public class MyModifyFragment extends Fragment {
                 imm.hideSoftInputFromWindow(txtUserName.getWindowToken(),0);
             }
         });
+
+
+
+        KeyboardUtils.addKeyboardToggleListener(getActivity(), new KeyboardUtils.SoftKeyboardToggleListener()
+        {
+            @Override
+            public void onToggleSoftKeyboard(boolean isVisible)
+            {
+                Log.d("keyboard", "keyboard visible: "+isVisible);
+                TextView txt_title = view.findViewById(R.id.txt_title);
+                ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) txt_title.getLayoutParams();
+                if(isVisible==true){
+                    params.topMargin = 30;
+
+                }else {
+                    params.topMargin = -70;
+
+                }
+            }
+        });
+
+
+
 
 
 
@@ -173,13 +206,184 @@ public class MyModifyFragment extends Fragment {
         txtBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
-                DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(), R.style.DialogTheme, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH));
 
-                datePickerDialog.getDatePicker().setMaxDate(myCalendar.getTimeInMillis());
-                datePickerDialog.show();
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                LayoutInflater inflater = getLayoutInflater();
+                final View dialogView = inflater.inflate(R.layout.dialog_addmember, null);
+
+                final TextView txt_year = dialogView.findViewById(R.id.txt_year);
+                final TextView txt_month = dialogView.findViewById(R.id.txt_month);
+                final TextView txt_day = dialogView.findViewById(R.id.txt_day);
+
+
+
+                builder.setView(dialogView);
+                txt_year.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        Log.e("와쳐", "" + txt_year.getText().toString().length());
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        Log.e("와쳐", "" + txt_year.getText().toString().length());
+                        if (txt_year.getText().toString().length() >= 4) {
+                            txt_year.clearFocus();
+                            txt_month.requestFocus();
+                        }
+                    }
+                });
+
+                txt_month.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        ArrayList<String> month = new ArrayList<>();
+
+                        month.add("2");
+                        month.add("3");
+                        month.add("4");
+                        month.add("5");
+                        month.add("6");
+                        month.add("7");
+                        month.add("8");
+                        month.add("9");
+                        if (month.contains(txt_month.getText().toString())) {
+                            txt_month.setText("0" + txt_month.getText().toString());
+                            txt_month.clearFocus();
+                            txt_day.requestFocus();
+                        }
+
+
+                        if (txt_month.getText().toString().length() >= 2) {
+                            txt_month.clearFocus();
+                            txt_day.requestFocus();
+                        }
+                    }
+                });
+
+                txt_day.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                        ArrayList<String> day = new ArrayList<>();
+
+
+                        day.add("4");
+                        day.add("5");
+                        day.add("6");
+                        day.add("7");
+                        day.add("8");
+                        day.add("9");
+                        if (day.contains(txt_day.getText().toString())) {
+                            txt_day.setText("0" + txt_day.getText().toString());
+
+                        }
+
+                        if (txt_day.getText().toString().length() >= 2) {
+
+                            InputMethodManager imm = (InputMethodManager) activity.getSystemService(INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(txt_day.getWindowToken(), 0);
+                        }
+                    }
+                });
+                TextView button_yes = dialogView.findViewById(R.id.button_yes);
+                TextView button_no = dialogView.findViewById(R.id.button_no);
+                final AlertDialog dialog = builder.create();
+                dialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface arg0) {
+                        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#14A2F6"));
+                        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#A2A2A2"));
+                    }
+                });
+
+
+                button_yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        RadioGroup rg = dialogView.findViewById(R.id.solunar_group);
+                        RadioButton rb = dialogView.findViewById(rg.getCheckedRadioButtonId());
+                        String year = txt_year.getText().toString();
+                        String month = txt_month.getText().toString();
+                        String day = txt_day.getText().toString();
+
+
+                        if (year.length() != 4) {
+
+                            Toast.makeText(getContext(), "연도를 네자리로 입력해 주세요.", Toast.LENGTH_SHORT).show();
+
+                        } else {
+
+
+                            if (rb == null) {
+                                Toast.makeText(getContext(), "양력 혹은 음력을 선택해주세요.", Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                if (month.length() < 2) {
+                                    month = "0" + month;
+                                }
+                                if (day.length() < 2) {
+                                    day = "0" + day;
+                                }
+
+                                if (validationDate(year + "-" + month + "-" + day) == true) {
+                                    txtBirthday.setText(year + ". " + month + ". " + day + " " + rb.getText().toString());
+                                    Log.e("here", "on");
+                                    dialog.dismiss();
+
+
+                                } else {
+                                    Toast.makeText(getContext(), "유효한 날짜를 입력해 주세요.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+
+                    }
+                });
+
+
+                builder.setCancelable(false);
+
+
+                button_no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+
+                    }
+                });
+
+                dialog.show();
+
+
             }
         });
 
@@ -233,17 +437,13 @@ public class MyModifyFragment extends Fragment {
             if(getTodayFortuneTellingResult.getResultCode()==1){
 
                 Toast.makeText(getContext(), getTodayFortuneTellingResult.getResultMessage(), Toast.LENGTH_SHORT).show();
+                pref.setName("");
+                mProgressDialog.dismiss();
 
 
             }else {
                 Toast.makeText(getContext(), "수정되었습니다.", Toast.LENGTH_SHORT).show();
-////                Intent intent = new Intent(getContext(), MainActivity.class);
-////                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-////                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-////                startActivity(intent);
-
-
-//                onDestroyView();
+                mProgressDialog.dismiss();
                 activity.onBackPressed();
 
 
@@ -277,14 +477,14 @@ public class MyModifyFragment extends Fragment {
     public void onDestroy() {
         if(activity != null){
             activity.hideBackButton();
-            Intent intent = new Intent(getContext(), MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//            Intent intent = new Intent(getContext(), MainActivity.class);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//            activity.finish();
+//            startActivity(intent);
+
+            startActivity(activity.getIntent().setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION));
             activity.finish();
-            startActivity(intent);
-
-
-
         }
         super.onDestroy();
     }
@@ -350,11 +550,26 @@ public class MyModifyFragment extends Fragment {
 
     }
 
+    public boolean validationDate(String checkDate) {
+
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+            dateFormat.setLenient(false);
+            dateFormat.parse(checkDate);
+            return true;
+
+        } catch (ParseException e) {
+            return false;
+        }
+
+    }
+
     private void checkForm() {
         String name = txtUserName.getText().toString();
         String birth_date = txtBirthday.getText().toString();
         String birth_time = txtBirthTime.getText().toString();
-        Button nextButton = view.findViewById(R.id.nextButton);
+        TextView nextButton = view.findViewById(R.id.nextButton);
 
 
 
@@ -362,10 +577,10 @@ public class MyModifyFragment extends Fragment {
 
 
         if (name.length() > 1 && birth_date.length() > 1 && birth_time.length() > 1) {
-            nextButton.setBackgroundResource(R.drawable.arrow_blue);
+            nextButton.setBackgroundColor(Color.parseColor("#14A2F6"));
             inputCheck = true;
         } else {
-            nextButton.setBackgroundResource(R.drawable.arrow);
+            nextButton.setBackgroundColor(Color.parseColor("#BDBDBD"));
             inputCheck = false;
         }
     }
@@ -394,15 +609,20 @@ public class MyModifyFragment extends Fragment {
 
     public void nextTab(){
 
-        Button nextButton = view.findViewById(R.id.nextButton);
+
+        TextView nextButton = view.findViewById(R.id.nextButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mProgressDialog.show();
+                mProgressDialog.setCancelable(false);
                 if (txtUserName.length() == 0 || txtBirthday.length() == 0 || txtBirthTime.length() == 0 || radioGroup.getCheckedRadioButtonId() == -1) {
                     Toast.makeText(getContext(), "모든 사항을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    mProgressDialog.dismiss();
                 } else {
                     if (txtUserName.length() < 2) {
                         Toast.makeText(getContext(), "이름을 두 글자 이상 입력해주세요.", Toast.LENGTH_SHORT).show();
+                        mProgressDialog.dismiss();
 
                     } else {
                         RadioButton rd = view.findViewById(radioGroup.getCheckedRadioButtonId());
